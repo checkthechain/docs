@@ -32,7 +32,7 @@ Guide
 - To use ``ctc`` from the command line, see `Command Line Interface </cli/basic_usage.html>`_.
 - To use ``ctc`` in python, see `Python Interface </python/code_tour.html>`_.
 - To use ``ctc`` with specific protocols like Uniswap or Chainlink, see the `Specific Protocols (cli) </cli/subcommands/protocol.html>`_ or `Specific Protocols (python) </python/specific_protocols.html>`_.
-- To see examples of what you can do with ``ctc``, see `Case Studies </case_studies/gallery.html>`_.
+- To see examples of what you can do with ``ctc``, see `Case Studies </case_studies/under_construction.html>`_.
 
 
 Datatypes
@@ -51,7 +51,7 @@ Datatypes
      - `CLI Docs </cli/subcommands/data/abi.html>`__
      - `Python Docs </python/datatypes/abis.html>`__
    * - Binary Data
-     - `CLI Docs </cli/subcommands/compute>`__
+     - `CLI Docs </cli/subcommands/compute.html>`__
      - `Python Docs </python/datatypes/binary_data.html>`__
    * - Blocks
      - `CLI Docs </cli/subcommands/data/blocks.html>`__
@@ -89,10 +89,10 @@ Specific Protocols
      - CLI Docs
      - Python Docs
      - Source
-   * - Aave
+   * - Aave V2
      - CLI Docs
-     - `Python Docs </python/protocols/aave.html>`__
-     - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/aave_utils/>`__
+     - `Python Docs </python/protocols/aave_v2.html>`__
+     - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/aave_v2_utils/>`__
    * - Balancer
      - CLI Docs
      - `Python Docs </python/protocols/balancer.html>`__
@@ -145,15 +145,15 @@ External Data Sources
      - Source
    * - 4byte
      - `CLI Docs </cli/subcommands/protocol/4byte.html>`__
-     - `Python Docs </python/protocols/coingecko.html>`__
+     - `Python Docs </python/protocols/4byte.html>`__
      - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/fourbyte_utils>`__
    * - CoinGecko
      - `CLI Docs </cli/subcommands/protocol/cg.html>`__
-     - `Python Docs </python/protocols/coingecko.html>`__
+     - \-
      - `Source <https://github.com/fei-protocol/checkthechain/blob/main/src/ctc/cli/commands/data/cg_command.py>`__
    * - Etherscan
-     - `CLI Docs </cli/subcommands/protocol/etherscan.html>`__
-     - `Python Docs </python/protocols/etherscan.html>`__
+     - \-
+     - \-
      - `Source <https://github.com/fei-protocol/checkthechain/blob/main/src/ctc/evm/abi_utils/abi_io/contract_abi_backends/etherscan_contract_abis.py>`__
 
 .. toctree::
