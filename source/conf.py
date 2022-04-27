@@ -32,7 +32,7 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx_autodoc_typehints',
     'myst_parser',
-    'sphinx_rtd_dark_mode',  # for dark mode theme
+    # 'sphinx_rtd_dark_mode',  # for dark mode theme
     'sphinx_copybutton',
     'nbsphinx'
 ]
@@ -92,6 +92,8 @@ html_theme_options = {
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_show_copyright = False
+html_show_sphinx = False
 
 # user starts in dark mode
 default_dark_mode = False
