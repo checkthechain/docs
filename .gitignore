@@ -1,0 +1,5 @@
+build/*
+.hypothesis/*
+source/cli/subcommand_html/*
+source/python/notebooks_html/*
+.ipynb_checkpoints
