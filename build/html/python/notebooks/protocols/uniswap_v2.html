@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get pool metadata &mdash; Check the Chain (ctc)  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Check the Chain (ctc)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data &amp; Ops</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/obtaining_data.html">Obtaining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/storing_data.html">Storing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/monitoring.html">Monitoring</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Command Line Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/subcommands.html">Subcommands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/useful_aliases.html">Useful Aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/similar_tools.html">Similar CLI tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_tour.html">Codebase Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc_client.html">RPC Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../async_code.html">Asynchronous Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes.html">Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specific_protocols.html">Specific Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../similar_tools.html">Similar Python Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/under_construction.html">[Under Construction]</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Check the Chain (ctc)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Get pool metadata</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/notebooks/protocols/uniswap_v2.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctc.protocols</span> <span class="kn">import</span> <span class="n">uniswap_v2_utils</span>
+<span class="kn">from</span> <span class="nn">ctc.toolbox.amm_utils</span> <span class="kn">import</span> <span class="n">cpmm</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pool</span> <span class="o">=</span> <span class="s1">&#39;0x9928e4046d7c6513326ccea028cd3e7a91c7590a&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Get-pool-metadata">
+<h1>Get pool metadata<a class="headerlink" href="#Get-pool-metadata" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pool_tokens</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uniswap_v2_utils</span><span class="o">.</span><span class="n">async_get_pool_tokens</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="n">pool_symbols</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uniswap_v2_utils</span><span class="o">.</span><span class="n">async_get_pool_symbols</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="n">pool_decimals</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uniswap_v2_utils</span><span class="o">.</span><span class="n">async_get_pool_decimals</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pool_tokens:&#39;</span><span class="p">,</span> <span class="n">pool_tokens</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pool_symbols:&#39;</span><span class="p">,</span> <span class="n">pool_symbols</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pool_decimals:&#39;</span><span class="p">,</span> <span class="n">pool_decimals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+pool_tokens: [&#39;0x956f47f50a910163d8bf957cf5846d573e7f87ca&#39;, &#39;0xc7283b66eb1eb5fb86327f08e1b5816b0720212b&#39;]
+pool_symbols: [&#39;FEI&#39;, &#39;TRIBE&#39;]
+pool_decimals: [18, 18]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-pool-state">
+<h1>Get pool state<a class="headerlink" href="#Get-pool-state" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pool_state</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uniswap_v2_utils</span><span class="o">.</span><span class="n">async_get_pool_state</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+
+<span class="n">pool_state</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;x_reserves&#39;: 82010617.9348254,
+ &#39;y_reserves&#39;: 164056747.1990849,
+ &#39;lp_total_supply&#39;: 178771462.67467377}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-pool-state-at-a-specific-block">
+<h1>Get pool state at a specific block<a class="headerlink" href="#Get-pool-state-at-a-specific-block" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pool_state</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uniswap_v2_utils</span><span class="o">.</span><span class="n">async_get_pool_state</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="mi">14000000</span><span class="p">)</span>
+
+<span class="n">pool_state</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;x_reserves&#39;: 153539933.09509552,
+ &#39;y_reserves&#39;: 125886010.40488024,
+ &#39;lp_total_supply&#39;: 215052578.20642424}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-pool-state-across-many-historical-blocks">
+<h1>Get pool state across many historical blocks<a class="headerlink" href="#Get-pool-state-across-many-historical-blocks" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blocks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">14000000</span><span class="p">,</span> <span class="mi">14100000</span><span class="p">,</span> <span class="mi">20000</span><span class="p">))</span>
+
+<span class="n">pool_state_by_block</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uniswap_v2_utils</span><span class="o">.</span><span class="n">async_get_pool_state_by_block</span><span class="p">(</span>
+    <span class="n">pool</span><span class="p">,</span>
+    <span class="n">blocks</span><span class="o">=</span><span class="n">blocks</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">pool_state_by_block</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;x_reserves&#39;: [3902.2604757534364,
+  3646.5911759325286,
+  3320.412482258139,
+  2803.750690192395,
+  2753.4720320440665],
+ &#39;y_reserves&#39;: [3199.4282721811446,
+  3031.4310322189203,
+  3246.3249589194047,
+  3832.6757137039026,
+  3891.8368311451377],
+ &#39;lp_total_supply&#39;: [215052578.2064242,
+  202288486.47575706,
+  199698652.82397622,
+  199313423.07966512,
+  198957800.9702922]}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Show-pool-Summary">
+<h1>Show pool Summary<a class="headerlink" href="#Show-pool-Summary" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpmm</span><span class="o">.</span><span class="n">print_pool_summary</span><span class="p">(</span><span class="o">**</span><span class="n">pool_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+- X reserves: 153.54M
+- Y reserves: 125.89M
+- total lp tokens: 215.05M
+- X / Y price: 1.22
+- Y / X price: 0.819891
+- X / Y liquidity depth:
+
+      depth  │  new price   │  X           │  Y
+    ─────────┼──────────────┼──────────────┼──────────────
+      -10%   │  1.1 X / Y   │   buy 7.87M  │  sell 6.82M
+      -5%    │  1.16 X / Y  │   buy 3.88M  │  sell 3.28M
+      -2%    │  1.2 X / Y   │   buy 1.54M  │  sell 1.28M
+       0%    │  1.22 X / Y  │       0.00   │       0.00
+      +2%    │  1.24 X / Y  │  sell 1.53M  │   buy 1.24M
+      +5%    │  1.28 X / Y  │  sell 3.8M   │   buy 3.03M
+      +10%   │  1.34 X / Y  │  sell 7.51M  │   buy 5.85M
+
+- Y / X liquidity depth:
+
+      depth  │  new price       │  Y           │  X
+    ─────────┼──────────────────┼──────────────┼──────────────
+      -10%   │  0.737902 Y / X  │   buy 6.45M  │  sell 8.32M
+      -5%    │  0.778896 Y / X  │   buy 3.18M  │  sell 3.99M
+      -2%    │  0.803493 Y / X  │   buy 1.26M  │  sell 1.56M
+       0%    │  0.819891 Y / X  │       0.00   │       0.00
+      +2%    │  0.836289 Y / X  │  sell 1.25M  │   buy 1.51M
+      +5%    │  0.860886 Y / X  │  sell 3.11M  │   buy 3.69M
+      +10%   │  0.90188 Y / X   │  sell 6.15M  │   buy 7.14M
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Model-pool-trade">
+<h1>Model pool trade<a class="headerlink" href="#Model-pool-trade" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trade</span> <span class="o">=</span> <span class="n">cpmm</span><span class="o">.</span><span class="n">trade</span><span class="p">(</span>
+    <span class="n">x_sold</span><span class="o">=</span><span class="mi">500000</span><span class="p">,</span>
+    <span class="n">x_reserves</span><span class="o">=</span><span class="n">pool_state</span><span class="p">[</span><span class="s1">&#39;x_reserves&#39;</span><span class="p">],</span>
+    <span class="n">y_reserves</span><span class="o">=</span><span class="n">pool_state</span><span class="p">[</span><span class="s1">&#39;y_reserves&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">trade</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;x_bought&#39;: -500000,
+ &#39;x_sold&#39;: 500000,
+ &#39;y_bought&#39;: 407392.9793098554,
+ &#39;y_sold&#39;: -407392.9793098554,
+ &#39;fee_rate&#39;: 0.003,
+ &#39;new_pool&#39;: {&#39;x_reserves&#39;: 154039933.09509552,
+  &#39;y_reserves&#39;: 125478617.42557038}}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Show-trade-summary">
+<h1>Show trade summary<a class="headerlink" href="#Show-trade-summary" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpmm</span><span class="o">.</span><span class="n">print_trade_summary</span><span class="p">(</span>
+    <span class="n">x_sold</span><span class="o">=</span><span class="mi">500000</span><span class="p">,</span>
+    <span class="n">x_reserves</span><span class="o">=</span><span class="n">pool_state</span><span class="p">[</span><span class="s1">&#39;x_reserves&#39;</span><span class="p">],</span>
+    <span class="n">y_reserves</span><span class="o">=</span><span class="n">pool_state</span><span class="p">[</span><span class="s1">&#39;y_reserves&#39;</span><span class="p">],</span>
+    <span class="n">x_name</span><span class="o">=</span><span class="n">pool_symbols</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">y_name</span><span class="o">=</span><span class="n">pool_symbols</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+- FEI sold: 500,000
+- TRIBE bought: 407,392.98
+- fees: 1,500 FEI
+- prices:
+
+                 │ P_mean   │ P_start  │ P_end    │ mean slippage │ end slippage
+    ─────────────┼──────────┼──────────┼──────────┼───────────────┼──────────────
+     FEI / TRIBE │ 1.23     │ 1.22     │ 1.23     │ 0.006266      │ 0.006514
+     TRIBE / FEI │ 0.814786 │ 0.819891 │ 0.814585 │ -0.006226     │ -0.006472
+
+- pool reserve sizes:
+
+           │ before        │ after          │ change
+    ───────┼───────────────┼────────────────┼───────────
+     FEI   │ 153,539,933.1 │ 154,039,933.1  │ 0.003256
+     TRIBE │ 125,886,010.4 │ 125,478,617.43 │ -0.003236
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-pool-swaps">
+<h1>Get pool swaps<a class="headerlink" href="#Get-pool-swaps" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">swaps</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uniswap_v2_utils</span><span class="o">.</span><span class="n">async_get_pool_swaps</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+
+<span class="n">swaps</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>address</th>
+      <th>block_hash</th>
+      <th>transaction_hash</th>
+      <th>contract_address</th>
+      <th>event_name</th>
+      <th>event_hash</th>
+      <th>arg__sender</th>
+      <th>arg__to</th>
+      <th>x_sold</th>
+      <th>y_sold</th>
+      <th>x_bought</th>
+      <th>y_bought</th>
+    </tr>
+    <tr>
+      <th>block_number</th>
+      <th>transaction_index</th>
+      <th>log_index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12168368</th>
+      <th>61</th>
+      <th>63</th>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x3bce142af146fec596340d67569a44688690955a065f...</td>
+      <td>0xc9851f374701f76024c1f44f7166e0ef8a9945675046...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Swap</td>
+      <td>0xd78ad95fa46c994b6551d0da85fc275fe613ce37657f...</td>
+      <td>0x7d809969f6a04777f0a87ff94b57e56078e5fe0f</td>
+      <td>0xbffb152b9392e38cddc275d818a3db7fe364596b</td>
+      <td>3.858783e+08</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>1.192482e+08</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">12168369</th>
+      <th>0</th>
+      <th>7</th>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xe8b9e24b357d35647bd26523d1ddecebdf5530b5a2eb...</td>
+      <td>0x641b95d1f76a4a9e0101df94aab04aee23f95bca349f...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Swap</td>
+      <td>0xd78ad95fa46c994b6551d0da85fc275fe613ce37657f...</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>0x2ebd449e7b10b20135b6c1134b9e40c84f9fffde</td>
+      <td>0.000000e+00</td>
+      <td>469310.538337</td>
+      <td>1.500859e+06</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <th>26</th>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xe8b9e24b357d35647bd26523d1ddecebdf5530b5a2eb...</td>
+      <td>0x59e7772688fe9966abfeba79408ca9aedbf316bf4761...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Swap</td>
+      <td>0xd78ad95fa46c994b6551d0da85fc275fe613ce37657f...</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>0x94b0a3d511b6ecdb17ebf877278ab030acb0a878</td>
+      <td>0.000000e+00</td>
+      <td>305051.849919</td>
+      <td>9.663029e+05</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <th>53</th>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xe8b9e24b357d35647bd26523d1ddecebdf5530b5a2eb...</td>
+      <td>0xb7dd780066a84cd1fc4716ed11673c64d8af03ca28ba...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Swap</td>
+      <td>0xd78ad95fa46c994b6551d0da85fc275fe613ce37657f...</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>0x155ab90755eefc6f521cb3bccba4c5aedcd4cdb7</td>
+      <td>0.000000e+00</td>
+      <td>207200.000000</td>
+      <td>6.522322e+05</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <th>65</th>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xe8b9e24b357d35647bd26523d1ddecebdf5530b5a2eb...</td>
+      <td>0x3a3fdaaa52f99c3004370494e2b0852f9c6fb9b02a4f...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Swap</td>
+      <td>0xd78ad95fa46c994b6551d0da85fc275fe613ce37657f...</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>0xe28b3058a2f7f251741a7289b633a902126260ea</td>
+      <td>0.000000e+00</td>
+      <td>7587.187036</td>
+      <td>2.382049e+04</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14660449</th>
+      <th>3</th>
+      <th>20</th>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xb187e88d2b1df4e4f4b7c70311c75a3dd4c94b65612f...</td>
+      <td>0x2f511a657303912cced853fe087e70b80afe4baa471f...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Swap</td>
+      <td>0xd78ad95fa46c994b6551d0da85fc275fe613ce37657f...</td>
+      <td>0xdef1c0ded9bec7f1a1670819833240f027b25eff</td>
+      <td>0x9008d19f58aabd9ed0d60971565aa8510560ab41</td>
+      <td>4.389625e+04</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>8.734199e+04</td>
+    </tr>
+    <tr>
+      <th>14660612</th>
+      <th>32</th>
+      <th>72</th>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x7021c5564d85c46c553c2839055bec6f01cec03ee9f6...</td>
+      <td>0x93dd46968885a872e698e145914dac4d3eb1e4f833a2...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Swap</td>
+      <td>0xd78ad95fa46c994b6551d0da85fc275fe613ce37657f...</td>
+      <td>0x220bda5c8994804ac96ebe4df184d25e5c2196d4</td>
+      <td>0x220bda5c8994804ac96ebe4df184d25e5c2196d4</td>
+      <td>0.000000e+00</td>
+      <td>136872.211725</td>
+      <td>6.835661e+04</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>14660626</th>
+      <th>138</th>
+      <th>262</th>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xb34f2415ffc5cf92b27d42e42046dcb6d8bd593d0edc...</td>
+      <td>0x0bde4fe148c7d73783066943d09fe571616803605463...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Swap</td>
+      <td>0xd78ad95fa46c994b6551d0da85fc275fe613ce37657f...</td>
+      <td>0x1111111254fb6c44bac0bed2854e76f90643097d</td>
+      <td>0x6481659f0eb0faf4efa8adf4aae45a0b3358b3a1</td>
+      <td>0.000000e+00</td>
+      <td>54053.124285</td>
+      <td>2.696377e+04</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>14661288</th>
+      <th>11</th>
+      <th>155</th>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x2c2c7b58aecca0fc55831b34f1ddf2205875c8dfb09f...</td>
+      <td>0x87d2d4f3a562293ac9a1f22cc8638ea593145f315796...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Swap</td>
+      <td>0xd78ad95fa46c994b6551d0da85fc275fe613ce37657f...</td>
+      <td>0xa1006d0051a35b0000f961a8000000009ea8d2db</td>
+      <td>0xa1006d0051a35b0000f961a8000000009ea8d2db</td>
+      <td>0.000000e+00</td>
+      <td>1378.080380</td>
+      <td>6.872070e+02</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>14661430</th>
+      <th>66</th>
+      <th>81</th>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x718cb65dd50768ba28ab3b2d3a9e51840443e1250471...</td>
+      <td>0xe898a334f7f0f1d5f7f9af24f81c4f224eb7a2316f84...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Swap</td>
+      <td>0xd78ad95fa46c994b6551d0da85fc275fe613ce37657f...</td>
+      <td>0x220bda5c8994804ac96ebe4df184d25e5c2196d4</td>
+      <td>0x220bda5c8994804ac96ebe4df184d25e5c2196d4</td>
+      <td>0.000000e+00</td>
+      <td>45058.000000</td>
+      <td>2.246272e+04</td>
+      <td>0.000000e+00</td>
+    </tr>
+  </tbody>
+</table>
+<p>35778 rows × 12 columns</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="Get-pool-mints">
+<h1>Get pool mints<a class="headerlink" href="#Get-pool-mints" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mints</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uniswap_v2_utils</span><span class="o">.</span><span class="n">async_get_pool_mints</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+
+<span class="n">mints</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>block_hash</th>
+      <th>transaction_hash</th>
+      <th>contract_address</th>
+      <th>event_name</th>
+      <th>arg__sender</th>
+      <th>arg__amount0</th>
+      <th>arg__amount1</th>
+      <th>address</th>
+      <th>event_hash</th>
+    </tr>
+    <tr>
+      <th>block_number</th>
+      <th>transaction_index</th>
+      <th>log_index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12168368</th>
+      <th>61</th>
+      <th>57</th>
+      <td>0x3bce142af146fec596340d67569a44688690955a065f...</td>
+      <td>0xc9851f374701f76024c1f44f7166e0ef8a9945675046...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Mint</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>2.605227e+08</td>
+      <td>2.000000e+08</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c...</td>
+    </tr>
+    <tr>
+      <th>12168392</th>
+      <th>5</th>
+      <th>9</th>
+      <td>0x650f7f511d4c36c5753e5c53a5a0a1be89c06ce04d88...</td>
+      <td>0xf23c71488efbcc9f7bb065aef33862a23f163e3a3e20...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Mint</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>1.673037e+04</td>
+      <td>7.179388e+03</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c...</td>
+    </tr>
+    <tr>
+      <th>12168405</th>
+      <th>44</th>
+      <th>48</th>
+      <td>0xddd3da1acfddc7f772c6c80a3e765f88dd44f4037e08...</td>
+      <td>0x7f302eeb37edd1a429b6dd8b6a29064b77a30b3a88cd...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Mint</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>2.060025e+04</td>
+      <td>9.973594e+03</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c...</td>
+    </tr>
+    <tr>
+      <th>12168410</th>
+      <th>32</th>
+      <th>98</th>
+      <td>0x2f0a0bc05f1c8d1b846fac07d3b92d3fbb8f6d8f04f9...</td>
+      <td>0xddd0c0cc624e7db2808217e98d37282e553f98e697f0...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Mint</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>4.751617e+03</td>
+      <td>2.356516e+03</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c...</td>
+    </tr>
+    <tr>
+      <th>12168414</th>
+      <th>222</th>
+      <th>59</th>
+      <td>0x4989fc640b4044afa6ccaba2d25a5c6e3257cf9148c4...</td>
+      <td>0x5258f324dfdc6c083e5802ae0045e3f4b86661f350f2...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Mint</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>7.425795e+03</td>
+      <td>3.770426e+03</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14010995</th>
+      <th>116</th>
+      <th>137</th>
+      <td>0x24813e946c7916ad8fc8dc9cbfc12615c3850f73a1e6...</td>
+      <td>0x5abae9eb5e0f9432193fd38446ea66ac9f674a3e9832...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Mint</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>6.504461e+03</td>
+      <td>5.686750e+03</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c...</td>
+    </tr>
+    <tr>
+      <th>14023993</th>
+      <th>73</th>
+      <th>44</th>
+      <td>0xc66f524901abca03ba81a38557eedfdd2ca5803bd626...</td>
+      <td>0x2958819677150e4ab2e67ee5df75904b464e3e92e0b8...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Mint</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>6.531191e+03</td>
+      <td>5.680791e+03</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c...</td>
+    </tr>
+    <tr>
+      <th>14036910</th>
+      <th>70</th>
+      <th>83</th>
+      <td>0x8988dd212aa250ec5d3913669ce63b2ff54d327b90a2...</td>
+      <td>0x70fa382c6d941a8b4f657198c6350d9a52f4d5c71ced...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Mint</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>5.521641e+03</td>
+      <td>5.369273e+03</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c...</td>
+    </tr>
+    <tr>
+      <th>14049875</th>
+      <th>135</th>
+      <th>156</th>
+      <td>0x02db824f4137b10f3f0dae6bedb583b22be6bb5af913...</td>
+      <td>0x7c5491328f5620d4486fbbd88c060c49ab2a0d60cfbb...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Mint</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>4.856067e+03</td>
+      <td>5.475152e+03</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c...</td>
+    </tr>
+    <tr>
+      <th>14477692</th>
+      <th>59</th>
+      <th>78</th>
+      <td>0xe6db8770f7cdf19815d2ca8363a5dd14b74d5bb8dd34...</td>
+      <td>0x970548d6aa14768bc817063d9e06ba968f7453c9ef96...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Mint</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>1.000000e+00</td>
+      <td>1.728602e+00</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c...</td>
+    </tr>
+  </tbody>
+</table>
+<p>10041 rows × 9 columns</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="Get-pool-burns">
+<h1>Get pool burns<a class="headerlink" href="#Get-pool-burns" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">burns</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uniswap_v2_utils</span><span class="o">.</span><span class="n">async_get_pool_burns</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+
+<span class="n">burns</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>block_hash</th>
+      <th>transaction_hash</th>
+      <th>contract_address</th>
+      <th>event_name</th>
+      <th>arg__sender</th>
+      <th>arg__amount0</th>
+      <th>arg__amount1</th>
+      <th>arg__to</th>
+      <th>address</th>
+      <th>event_hash</th>
+    </tr>
+    <tr>
+      <th>block_number</th>
+      <th>transaction_index</th>
+      <th>log_index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12168478</th>
+      <th>71</th>
+      <th>92</th>
+      <td>0x9cbf1e47301905b3c876acc2c2db8762f333e3d1bbfa...</td>
+      <td>0x71d8939b4edf07087a69fd646bfaf509527ed9211411...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Burn</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>148271.937203</td>
+      <td>89795.087503</td>
+      <td>0xc01b33ae2e3a4cb75d0e3bcee2f0cc3eb3fe668a</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xdccd412f0b1252819cb1fd330b93224ca42612892bb3...</td>
+    </tr>
+    <tr>
+      <th>12168483</th>
+      <th>123</th>
+      <th>157</th>
+      <td>0xbd0256f088eeb51f8101a1b3b20d53fc35b532be0ebc...</td>
+      <td>0xab4f3a45eab31aa9a75ee961afba7b2b5b3bef745bca...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Burn</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>4723.992545</td>
+      <td>2879.302038</td>
+      <td>0xd683b78e988ba4bdb9fa0e2012c4c36b7cc96aad</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xdccd412f0b1252819cb1fd330b93224ca42612892bb3...</td>
+    </tr>
+    <tr>
+      <th>12168529</th>
+      <th>140</th>
+      <th>297</th>
+      <td>0x0614693238887091262a3d86adddcd88e3020708ad1e...</td>
+      <td>0xbd4f8703249967542414af4246fb3433c222deafc122...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Burn</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>18653.702095</td>
+      <td>9522.864220</td>
+      <td>0x18a5d209d58852499abc1ee73cbb27cc743dd317</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xdccd412f0b1252819cb1fd330b93224ca42612892bb3...</td>
+    </tr>
+    <tr>
+      <th>12168537</th>
+      <th>55</th>
+      <th>35</th>
+      <td>0x7c3f742344556505b91508e12fe45183553c5d575224...</td>
+      <td>0xd3bd1f7dc5453ac1ff625f8bfebbf2816e99f3bcc3ce...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Burn</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>8471.241203</td>
+      <td>4303.648906</td>
+      <td>0x4042f4142b026c9f980c7906060a80f57090d63b</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xdccd412f0b1252819cb1fd330b93224ca42612892bb3...</td>
+    </tr>
+    <tr>
+      <th>12168561</th>
+      <th>104</th>
+      <th>149</th>
+      <td>0x7dd20b35ff12825a70eb73bab51cbb5f3902c6cc5bb1...</td>
+      <td>0xea3807c8e6a2a26e245c74a8f32f6b1834471549acf2...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Burn</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>96329.571186</td>
+      <td>44065.409781</td>
+      <td>0xbfe890aac8d9d8dd840115dcd2cff3c99089779d</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xdccd412f0b1252819cb1fd330b93224ca42612892bb3...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14648332</th>
+      <th>128</th>
+      <th>59</th>
+      <td>0xf9d65c5ea170d9fc0e14c5abc26ca1f3a2e39caf4002...</td>
+      <td>0x3f40714e4815ee73036058f885ced7ffc1400e4aa2ab...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Burn</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>159.694483</td>
+      <td>313.471058</td>
+      <td>0x308ef074598ab19e881d0e29d1dd1bada90309b3</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xdccd412f0b1252819cb1fd330b93224ca42612892bb3...</td>
+    </tr>
+    <tr>
+      <th>14650542</th>
+      <th>135</th>
+      <th>241</th>
+      <td>0x6d7a7273fb7dd09dcc484eeee4ca4052ef923ccac08f...</td>
+      <td>0xb23e80e6ee4645c0f96b12c74720b865ef05dc804b19...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Burn</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>140.793767</td>
+      <td>277.951901</td>
+      <td>0xd8c84eac995150662cc052e6ac76ec184fcf1122</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xdccd412f0b1252819cb1fd330b93224ca42612892bb3...</td>
+    </tr>
+    <tr>
+      <th>14658619</th>
+      <th>170</th>
+      <th>324</th>
+      <td>0x428fa8fa81e542568900da8dc6529c192aacacb66382...</td>
+      <td>0xf1434282f0aa2532cc6ee2b5d02155ab15d901fb8116...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Burn</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>7435.083337</td>
+      <td>14922.841459</td>
+      <td>0x928baa371740e8ca4d5e49781e0edbe14eeda2a9</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xdccd412f0b1252819cb1fd330b93224ca42612892bb3...</td>
+    </tr>
+    <tr>
+      <th>14659259</th>
+      <th>223</th>
+      <th>311</th>
+      <td>0x38c7ae2094e0edce11d0ab18aa85c4e876b39b2873cf...</td>
+      <td>0xc8cddd006acc6f79c98baa50f2ada3fd02495e118a88...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Burn</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>951.707370</td>
+      <td>1910.172795</td>
+      <td>0x63376d56fa3976a0f0477489bb278227eee828c9</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xdccd412f0b1252819cb1fd330b93224ca42612892bb3...</td>
+    </tr>
+    <tr>
+      <th>14660281</th>
+      <th>125</th>
+      <th>293</th>
+      <td>0xdf3e8bdbcede2586d0f433d64462f54cd7272bc958b4...</td>
+      <td>0x090fad87e0aacb355fb2c7701920d26fa0f0cecb263c...</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>Burn</td>
+      <td>0x7a250d5630b4cf539739df2c5dacb4c659f2488d</td>
+      <td>242.228414</td>
+      <td>483.650326</td>
+      <td>0x19d6ce18df801a2ac35e0c8e45e63028fbdce9ca</td>
+      <td>0x9928e4046d7c6513326ccea028cd3e7a91c7590a</td>
+      <td>0xdccd412f0b1252819cb1fd330b93224ca42612892bb3...</td>
+    </tr>
+  </tbody>
+</table>
+<p>5125 rows × 10 columns</p>
+</div></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

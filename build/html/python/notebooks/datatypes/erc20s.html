@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get ERC20 metadata &mdash; Check the Chain (ctc)  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Check the Chain (ctc)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data &amp; Ops</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/obtaining_data.html">Obtaining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/storing_data.html">Storing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/monitoring.html">Monitoring</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Command Line Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/subcommands.html">Subcommands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/useful_aliases.html">Useful Aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/similar_tools.html">Similar CLI tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_tour.html">Codebase Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc_client.html">RPC Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../async_code.html">Asynchronous Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes.html">Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specific_protocols.html">Specific Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../similar_tools.html">Similar Python Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/under_construction.html">[Under Construction]</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Check the Chain (ctc)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Get ERC20 metadata</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/notebooks/datatypes/erc20s.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctc</span> <span class="kn">import</span> <span class="n">evm</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">erc20</span> <span class="o">=</span> <span class="s1">&#39;0x956f47f50a910163d8bf957cf5846d573e7f87ca&#39;</span>
+
+<span class="n">erc20s</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;0x956f47f50a910163d8bf957cf5846d573e7f87ca&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;0x5f98805a4e8be255a32880fdec7f6728c6568ba0&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;0x6b175474e89094c44da98b954eedeac495271d0f&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Get-ERC20-metadata">
+<h1>Get ERC20 metadata<a class="headerlink" href="#Get-ERC20-metadata" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_name</span><span class="p">(</span><span class="n">erc20</span><span class="p">)</span>
+<span class="n">symbol</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_symbol</span><span class="p">(</span><span class="n">erc20</span><span class="p">)</span>
+<span class="n">decimals</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_decimals</span><span class="p">(</span><span class="n">erc20</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;symbol:&#39;</span><span class="p">,</span> <span class="n">symbol</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;decimals:&#39;</span><span class="p">,</span> <span class="n">decimals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+name: Fei USD
+symbol: FEI
+decimals: 18
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-ERC20s-metadata">
+<h1>Get ERC20s metadata<a class="headerlink" href="#Get-ERC20s-metadata" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20s_names</span><span class="p">(</span><span class="n">erc20s</span><span class="p">)</span>
+<span class="n">symbols</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20s_symbols</span><span class="p">(</span><span class="n">erc20s</span><span class="p">)</span>
+<span class="n">decimals</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20s_decimals</span><span class="p">(</span><span class="n">erc20s</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;names:&#39;</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;symbols:&#39;</span><span class="p">,</span> <span class="n">symbols</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;decimals:&#39;</span><span class="p">,</span> <span class="n">decimals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+names: [&#39;Fei USD&#39;, &#39;LUSD Stablecoin&#39;, &#39;Dai Stablecoin&#39;]
+symbols: [&#39;FEI&#39;, &#39;LUSD&#39;, &#39;DAI&#39;]
+decimals: [18, 18, 18]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-ERC20-state">
+<h1>Get ERC20 state<a class="headerlink" href="#Get-ERC20-state" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_supply</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_total_supply</span><span class="p">(</span><span class="n">erc20</span><span class="p">)</span>
+<span class="n">address_balance</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_balance_of</span><span class="p">(</span>
+    <span class="s1">&#39;0x06cb22615ba53e60d67bf6c341a0fd5e718e1655&#39;</span><span class="p">,</span>
+    <span class="n">erc20</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total_supply:&#39;</span><span class="p">,</span> <span class="n">total_supply</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;address_balance:&#39;</span><span class="p">,</span> <span class="n">address_balance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+total_supply: 559506382.6688191
+address_balance: 82013460.60914315
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-raw-un-normalized-ERC20-state">
+<h1>Get raw un-normalized ERC20 state<a class="headerlink" href="#Get-raw-un-normalized-ERC20-state" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_total_supply</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_total_supply</span><span class="p">(</span>
+    <span class="n">erc20</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">raw_address_balance</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_balance_of</span><span class="p">(</span>
+    <span class="s1">&#39;0x06cb22615ba53e60d67bf6c341a0fd5e718e1655&#39;</span><span class="p">,</span>
+    <span class="n">erc20</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;raw_total_supply:&#39;</span><span class="p">,</span> <span class="n">raw_total_supply</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;raw_address_balance:&#39;</span><span class="p">,</span> <span class="n">raw_address_balance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+raw_total_supply: 559506382668819036430800521
+raw_address_balance: 82013460609143161348292841
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Normalize-raw-un-normalized-ERC20-values">
+<h1>Normalize raw un-normalized ERC20 values<a class="headerlink" href="#Normalize-raw-un-normalized-ERC20-values" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normalized_total_supply</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_normalize_erc20_quantity</span><span class="p">(</span>
+    <span class="n">raw_total_supply</span><span class="p">,</span>
+    <span class="n">erc20</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">normalized_values</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_normalize_erc20_quantities</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">raw_total_supply</span><span class="p">,</span> <span class="n">raw_address_balance</span><span class="p">],</span>
+    <span class="n">erc20</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;normalized_total_supply:&#39;</span><span class="p">,</span> <span class="n">normalized_total_supply</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;normalized_values:&#39;</span><span class="p">,</span> <span class="n">normalized_values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+normalized_total_supply: 559506382.6688191
+normalized_values: [559506382.6688191, 82013460.60914317]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-historical-ERC20-state-from-a-specific-block">
+<h1>Get historical ERC20 state from a specific block<a class="headerlink" href="#Get-historical-ERC20-state-from-a-specific-block" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_supply</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_total_supply</span><span class="p">(</span>
+    <span class="n">erc20</span><span class="p">,</span>
+    <span class="n">block</span><span class="o">=</span><span class="mi">14000000</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">address_balance</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_balance_of</span><span class="p">(</span>
+    <span class="s1">&#39;0x06cb22615ba53e60d67bf6c341a0fd5e718e1655&#39;</span><span class="p">,</span>
+    <span class="n">erc20</span><span class="p">,</span>
+    <span class="n">block</span><span class="o">=</span><span class="mi">14000000</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total_supply:&#39;</span><span class="p">,</span> <span class="n">total_supply</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;address_balance:&#39;</span><span class="p">,</span> <span class="n">address_balance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+total_supply: 751748886.6295298
+address_balance: 126538335.35590503
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-historical-ERC20-state-across-multiple-blocks">
+<h1>Get historical ERC20 state across multiple blocks<a class="headerlink" href="#Get-historical-ERC20-state-across-multiple-blocks" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">14000000</span><span class="p">,</span> <span class="mi">14100000</span><span class="p">,</span> <span class="mi">14200000</span><span class="p">]</span>
+
+<span class="n">total_supplies</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_total_supply_by_block</span><span class="p">(</span>
+    <span class="n">erc20</span><span class="p">,</span>
+    <span class="n">blocks</span><span class="o">=</span><span class="n">blocks</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">address_balances</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_balance_of_by_block</span><span class="p">(</span>
+    <span class="s1">&#39;0x06cb22615ba53e60d67bf6c341a0fd5e718e1655&#39;</span><span class="p">,</span>
+    <span class="n">erc20</span><span class="p">,</span>
+    <span class="n">blocks</span><span class="o">=</span><span class="n">blocks</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total_supplies:&#39;</span><span class="p">,</span> <span class="n">total_supplies</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;address_balances:&#39;</span><span class="p">,</span> <span class="n">address_balances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+total_supplies: [751748886.62953, 528229617.5828952, 550695508.5094506]
+address_balances: [126538335.35590503, 110223666.2844692, 122075790.9010594]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-state-of-multiple-ERC20s">
+<h1>Get state of multiple ERC20s<a class="headerlink" href="#Get-state-of-multiple-ERC20s" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_supplies</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20s_total_supplies</span><span class="p">(</span><span class="n">erc20s</span><span class="p">)</span>
+<span class="n">address_balances</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20s_balance_of</span><span class="p">(</span>
+    <span class="s1">&#39;0x06cb22615ba53e60d67bf6c341a0fd5e718e1655&#39;</span><span class="p">,</span>
+    <span class="n">erc20s</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total_supplies:&#39;</span><span class="p">,</span> <span class="n">total_supplies</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;address_balances:&#39;</span><span class="p">,</span> <span class="n">address_balances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+total_supplies: [559506382.6688191, 486343744.2968917, 8667121220.280003]
+address_balances: [82013460.60914317, 0.0, 0.0]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-ERC20-balance-of-multiple-addresses">
+<h1>Get ERC20 balance of multiple addresses<a class="headerlink" href="#Get-ERC20-balance-of-multiple-addresses" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">addresses</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;0x06cb22615ba53e60d67bf6c341a0fd5e718e1655&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;0x9928e4046d7c6513326ccea028cd3e7a91c7590a&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;0x2a188f9eb761f70ecea083ba6c2a40145078dfc2&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">addresses_balances</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_balance_of_addresses</span><span class="p">(</span>
+    <span class="n">addresses</span><span class="p">,</span>
+    <span class="n">erc20</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;addresses_balances:&#39;</span><span class="p">,</span> <span class="n">addresses_balances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+addresses_balances: [82013460.60914317, 81847315.3602611, 50080265.77634068]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-ERC20-transfers">
+<h1>Get ERC20 transfers<a class="headerlink" href="#Get-ERC20-transfers" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transfers</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_transfers</span><span class="p">(</span><span class="n">erc20</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">transfers</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>address</th>
+      <th>transaction_hash</th>
+      <th>block_hash</th>
+      <th>contract_address</th>
+      <th>event_name</th>
+      <th>event_hash</th>
+      <th>arg__from</th>
+      <th>arg__to</th>
+      <th>arg__amount</th>
+    </tr>
+    <tr>
+      <th>block_number</th>
+      <th>transaction_index</th>
+      <th>log_index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">12168368</th>
+      <th rowspan="5" valign="top">61</th>
+      <th>29</th>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>0xc9851f374701f76024c1f44f7166e0ef8a9945675046...</td>
+      <td>0x3bce142af146fec596340d67569a44688690955a065f...</td>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>Transfer</td>
+      <td>0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4...</td>
+      <td>0x0000000000000000000000000000000000000000</td>
+      <td>0xbffb152b9392e38cddc275d818a3db7fe364596b</td>
+      <td>1302613195.326042</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>0xc9851f374701f76024c1f44f7166e0ef8a9945675046...</td>
+      <td>0x3bce142af146fec596340d67569a44688690955a065f...</td>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>Transfer</td>
+      <td>0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4...</td>
+      <td>0x0000000000000000000000000000000000000000</td>
+      <td>0x9b0c6299d08fe823f2c0598d97a1141507e4ad86</td>
+      <td>1315770904.36974</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>0xc9851f374701f76024c1f44f7166e0ef8a9945675046...</td>
+      <td>0x3bce142af146fec596340d67569a44688690955a065f...</td>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>Transfer</td>
+      <td>0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4...</td>
+      <td>0x9b0c6299d08fe823f2c0598d97a1141507e4ad86</td>
+      <td>0x94b0a3d511b6ecdb17ebf877278ab030acb0a878</td>
+      <td>1315770904.36974</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>0xc9851f374701f76024c1f44f7166e0ef8a9945675046...</td>
+      <td>0x3bce142af146fec596340d67569a44688690955a065f...</td>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>Transfer</td>
+      <td>0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4...</td>
+      <td>0x9b0c6299d08fe823f2c0598d97a1141507e4ad86</td>
+      <td>0x0000000000000000000000000000000000000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>0xc9851f374701f76024c1f44f7166e0ef8a9945675046...</td>
+      <td>0x3bce142af146fec596340d67569a44688690955a065f...</td>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>Transfer</td>
+      <td>0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4...</td>
+      <td>0x0000000000000000000000000000000000000000</td>
+      <td>0xbffb152b9392e38cddc275d818a3db7fe364596b</td>
+      <td>500.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">14658112</th>
+      <th rowspan="2" valign="top">29</th>
+      <th>70</th>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>0x6380ed1ff7267489f6e0c3d911f5fb7b5eb5ed800505...</td>
+      <td>0x30aa8e2534a5871dd4b55b97c209a9b037ee9ac23121...</td>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>Transfer</td>
+      <td>0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4...</td>
+      <td>0x81e289cdb4c163eda38a85d98e6e3e18106b0577</td>
+      <td>0x4188fbd7adc72853e3275f1c3503e170994888d7</td>
+      <td>214110.904466</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>0x6380ed1ff7267489f6e0c3d911f5fb7b5eb5ed800505...</td>
+      <td>0x30aa8e2534a5871dd4b55b97c209a9b037ee9ac23121...</td>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>Transfer</td>
+      <td>0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4...</td>
+      <td>0x4188fbd7adc72853e3275f1c3503e170994888d7</td>
+      <td>0xd8553552f8868c1ef160eedf031cf0bcf9686945</td>
+      <td>214110.904466</td>
+    </tr>
+    <tr>
+      <th>14658180</th>
+      <th>312</th>
+      <th>472</th>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>0x5fbedf40dc8736edaa2dff2f0efecc67968e664e6961...</td>
+      <td>0x9b0d83344416e39e705b3b1bc94ad599282ce113739d...</td>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>Transfer</td>
+      <td>0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4...</td>
+      <td>0x94b0a3d511b6ecdb17ebf877278ab030acb0a878</td>
+      <td>0xbc99c4bd93c24db1bf553f2c7f9348be639fe5b6</td>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">14658188</th>
+      <th rowspan="2" valign="top">27</th>
+      <th>75</th>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>0xd583165618e774fddd86ad295213d08b1555bba9baee...</td>
+      <td>0xfb587295db467998b8f66b97d4ca02d5478654586fb2...</td>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>Transfer</td>
+      <td>0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4...</td>
+      <td>0xbc99c4bd93c24db1bf553f2c7f9348be639fe5b6</td>
+      <td>0x4188fbd7adc72853e3275f1c3503e170994888d7</td>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>0xd583165618e774fddd86ad295213d08b1555bba9baee...</td>
+      <td>0xfb587295db467998b8f66b97d4ca02d5478654586fb2...</td>
+      <td>0x956f47f50a910163d8bf957cf5846d573e7f87ca</td>
+      <td>Transfer</td>
+      <td>0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4...</td>
+      <td>0x4188fbd7adc72853e3275f1c3503e170994888d7</td>
+      <td>0xd8553552f8868c1ef160eedf031cf0bcf9686945</td>
+      <td>100.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>230803 rows × 9 columns</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="Get-ERC20-holdings-from-transfers">
+<h1>Get ERC20 holdings from transfers<a class="headerlink" href="#Get-ERC20-holdings-from-transfers" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transfers</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_transfers</span><span class="p">(</span>
+    <span class="n">erc20</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">holders</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_erc20_holdings_from_transfers</span><span class="p">(</span><span class="n">transfers</span><span class="p">)</span>
+
+<span class="n">holders</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+address
+0x06cb22615ba53e60d67bf6c341a0fd5e718e1655      82013460609143161348292841
+0x9928e4046d7c6513326ccea028cd3e7a91c7590a      81847315360261096266963204
+0x2a188f9eb761f70ecea083ba6c2a40145078dfc2      50080265776340681042249402
+0xdf50fbde8180c8785842c8e316ebe06f542d3443      46065744752632102671172954
+0xbc9c084a12678ef5b516561df902fdc426d95483      39071315320916302703293699
+                                                          ...
+0x5e8c6d1b31c681f0759e86f186c085b1e00195bc                               0
+0x5e8f0803d03dfbf397bf732c3232f6bebd2e0c0d                               0
+0x5e945fe1851a2bfc86d618e200708d6209bb9bb6                               0
+0x5e986b9794cba744d06299e214217ae5f926b244                               0
+0x0000000000000000000000000000000000000000    -559506382668819036430800521
+Name: balance, Length: 19605, dtype: object
+</pre></div></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

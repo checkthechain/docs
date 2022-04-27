@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get PCV stats &mdash; Check the Chain (ctc)  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Check the Chain (ctc)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data &amp; Ops</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/obtaining_data.html">Obtaining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/storing_data.html">Storing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/monitoring.html">Monitoring</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Command Line Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/subcommands.html">Subcommands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/useful_aliases.html">Useful Aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/similar_tools.html">Similar CLI tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_tour.html">Codebase Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc_client.html">RPC Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../async_code.html">Asynchronous Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes.html">Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specific_protocols.html">Specific Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../similar_tools.html">Similar Python Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/under_construction.html">[Under Construction]</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Check the Chain (ctc)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Get PCV stats</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/notebooks/protocols/fei.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctc.protocols</span> <span class="kn">import</span> <span class="n">fei_utils</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Get-PCV-stats">
+<h1>Get PCV stats<a class="headerlink" href="#Get-PCV-stats" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pcv_stats</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fei_utils</span><span class="o">.</span><span class="n">async_get_pcv_stats</span><span class="p">()</span>
+
+<span class="n">pcv_stats</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;pcv&#39;: 653877821298495051313082711,
+ &#39;user_fei&#39;: 280632197839593053703651951,
+ &#39;protocol_equity&#39;: 373245623458901997609430760,
+ &#39;valid&#39;: True}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-PCV-stats-in-a-specific-block">
+<h1>Get PCV stats in a specific block<a class="headerlink" href="#Get-PCV-stats-in-a-specific-block" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pcv_stats</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fei_utils</span><span class="o">.</span><span class="n">async_get_pcv_stats</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="mi">14000000</span><span class="p">)</span>
+
+<span class="n">pcv_stats</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;pcv&#39;: 782812519953585480931863885,
+ &#39;user_fei&#39;: 321723324105548204271934214,
+ &#39;protocol_equity&#39;: 461089195848037276659929671,
+ &#39;valid&#39;: True}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-PCV-stats-over-multiple-blocks">
+<h1>Get PCV stats over multiple blocks<a class="headerlink" href="#Get-PCV-stats-over-multiple-blocks" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">14000000</span><span class="p">,</span> <span class="mi">14100000</span><span class="p">,</span> <span class="mi">14200000</span><span class="p">,</span> <span class="mi">14300000</span><span class="p">,</span> <span class="mi">14400000</span><span class="p">]</span>
+<span class="n">pcv_stats_by_block</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fei_utils</span><span class="o">.</span><span class="n">async_get_pcv_stats_by_block</span><span class="p">(</span><span class="n">blocks</span><span class="o">=</span><span class="n">blocks</span><span class="p">)</span>
+
+<span class="n">pcv_stats_by_block</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pcv</th>
+      <th>user_fei</th>
+      <th>protocol_equity</th>
+      <th>valid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>14000000</th>
+      <td>782812519.953585</td>
+      <td>321723324.105548</td>
+      <td>461089195.848037</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>14100000</th>
+      <td>603411901.290495</td>
+      <td>280650934.8377</td>
+      <td>322760966.452795</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>14200000</th>
+      <td>705091297.303412</td>
+      <td>328680909.169891</td>
+      <td>376410388.133522</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>14300000</th>
+      <td>715244196.847035</td>
+      <td>332565585.596083</td>
+      <td>382678611.250952</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>14400000</th>
+      <td>692683708.720875</td>
+      <td>336072876.273664</td>
+      <td>356610832.447211</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Print-PCV-asset-summary">
+<h1>Print PCV asset summary<a class="headerlink" href="#Print-PCV-asset-summary" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">fei_utils</span><span class="o">.</span><span class="n">async_print_pcv_assets</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+┌────────────────┐
+│ Fei PCV Assets │
+└────────────────┘
+total $618.37M
+
+  asset  │  amount   │  price      │  total
+─────────┼───────────┼─────────────┼────────────
+  WETH   │  163.16K  │  $2,863.54  │  $467.22M
+  DAI    │  15.14M   │  $1.00      │  $15.13M
+  RAI    │  6.67M    │  $2.99      │  $19.96M
+  DPI    │  37.89K   │  $166.14    │  $6.29M
+  LUSD   │  94.71M   │  $1.00      │  $94.74M
+  CREAM  │  31.78K   │  $39.49     │  $1.25M
+  agEUR  │  9.01M    │  $1.07      │  $9.61M
+  BAL    │  258.49K  │  $16.06     │  $4.15M
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Print-PCV-deposit-summary">
+<h1>Print PCV deposit summary<a class="headerlink" href="#Print-PCV-deposit-summary" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">fei_utils</span><span class="o">.</span><span class="n">async_print_pcv_deposits</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+┌──────────────────┐
+│ FEI PCV Deposits │
+└──────────────────┘
+  asset  │  balance   │  name                  │  address
+─────────┼────────────┼────────────────────────┼──────────────────────────────────────────────
+  WETH   │  $28.64M   │  Tokemak tWETH         │  0x0961d2a545e0c1201b313d14c57023682a546b9d
+  WETH   │  $141.67M  │  Lido stETH            │  0xa271ff86426c7fdaaae72603e6ce68c892d69ed7
+  WETH   │  $46.96M   │  Compound ETH          │  0x0735e14d28ed395048d5fa4a8dbe6e6eb9fc0470
+  WETH   │  $155.55M  │  AAVE ETH              │  0x43ef03755991056681f01ee2182234ef6af1f658
+  WETH   │  $1.22M    │  Uniswap FEI-ETH       │  0x15958381e9e6dc98bd49655e36f524d2203a28bd
+  WETH   │  $25.34K   │  FEI-ETH PSM           │  0x98e5f5706897074a4664dd3a32eb80242d6e694b
+  WETH   │  $7.16M    │  Fuse Pool 146 ETH     │  0xc68412b72e68c30d4e6c0854b439cbbe957146e4
+  WETH   │  $42.95M   │  DAO Timelock ETH      │  0x5e9fa7d783a7f7d4626ce450c8bd2ebbb26dfdb2
+  WETH   │  $43.05M   │  Balancer FEI-WETH     │  0xc5bb8f0253776bec6ff450c2b40f092f7e7f5b57
+  DAI    │  $147.13K  │  Compound DAI          │  0xfde7077aaecdaf2c4b85261aa858c96a7e737a61
+  DAI    │  $9.96M    │  FEI-DAI PSM           │  0x2a188f9eb761f70ecea083ba6c2a40145078dfc2
+  DAI    │  $5.03M    │  Fuse Pool 8 DAI       │  0x9cc46ab5a714f7cd24c59f33c5769039b5872491
+  RAI    │  $9.94M    │  Fuse Pool 9 RAI       │  0xcce230c087f31032fc17621a2cf5e425a0b80c96
+  RAI    │  $10.03M   │  AAVE RAI              │  0x1267b39c93711dd374deab15e0127e4adb259be0
+  RAI    │  $0.00     │  DAO Timelock RAI      │  0x7339ca4ac94020b83a34f5edfa6e0f26986c434b
+  DPI    │  $5.85M    │  DAO Timelock DPI      │  0xb250926e75b1cc6c53e77bb9426baac14ab1e24c
+  DPI    │  $441.48K  │  Fuse Pool 19 DPI      │  0x9a774a1b1208c323eded05e6daf592e6e59caa55
+  LUSD   │  $78.93K   │  Fuse Pool 91 LUSD     │  0x8c51e4532cc745cf3dfec5cebd835d07e7ba1002
+  LUSD   │  $10.03M   │  Fuse Pool 7 LUSD      │  0x6026a1559cdd44a63c5ca9a078cc996a9eb68abb
+  LUSD   │  $79.61M   │  B Protocol LUSD       │  0x374628ebe7ef6aca0574e750b618097531a26ff8
+  LUSD   │  $1.01K    │  FEI-LUSD PSM          │  0xb0e731f036adfdec12da77c15aab0f90e8e45a0e
+  LUSD   │  $5.03M    │  Fuse Pool 8 LUSD      │  0xf846ee6e8ee9a6fbf51c7c65105cabc041c048ad
+  CREAM  │  $1.25M    │  CREAM Hack Repayment  │  0x3a1838ac9eca864054bebb82c32455dd7d7fc89c
+  agEUR  │  $0.00     │                        │  0xe8633c49ace655eb4a8b720e6b12f09bd3a97812
+  agEUR  │  $0.00     │  DAO Timelock agEUR    │  0x485d23ce5725ecde46ca9033012984d90b514ffd
+  agEUR  │  $9.61M    │  Uniswap FEI-agEUR     │  0xd2554839c2e8a87dd2cddd013ef828b6534abc26
+  BAL    │  $4.15M    │  Balancer BAL-WETH     │  0xcd1ac0014e2ebd972f40f24df1694e6f528b2fd4
+
+┌─────────────────┐
+│ FEI Deployments │
+└─────────────────┘
+  asset  │  balance   │  name                │  address
+─────────┼────────────┼──────────────────────┼──────────────────────────────────────────────
+  FEI    │  $39.05M   │  OA Account          │  0x7eb88140af813294aedce981b6ac08fcd139d408
+  FEI    │  $20.79M   │  Fuse Pool 8         │  0xd6598a23418c7fef7c0dc863265515b623b720f9
+  FEI    │  $333.90K  │  Fuse Pool 90 FEI    │  0xec54148cbc47bff8fcc5e04e5e8083adb8af9ad9
+  FEI    │  $2.55M    │  Fuse Pool 79 FEI    │  0xb3a026b830796e43bfc8b135553a7573538ab341
+  FEI    │  $3.17M    │  Fuse Pool 6         │  0x7aa4b1558c3e219cfffd6a356421c071f71966e7
+  FEI    │  $600.15K  │  Fuse Pool 19        │  0x7e39bba9d0d967ee55524fae9e54900b02d9889a
+  FEI    │  $453.51K  │  Fuse Pool 24        │  0x508f6fbd78b6569c29e9d75986a51558de9e5865
+  FEI    │  $50.00K   │  Fuse Pool 25        │  0xb4ffd10c4c290dc13e8e30bf186f1509001515fd
+  FEI    │  $111.02K  │  Balancer FEI-TRIBE  │  0x89dfbc12001b41985efabd7dfcae6a77b22e4ec3
+  FEI    │  $1.05M    │  Fuse Pool 27        │  0xe2e35097638f0ff2eeca2ef70f352be37431945f
+  FEI    │  $808.85K  │  Fuse Pool 18        │  0x07f2dd7e6a78d96c08d0a8212f4097dcc129d629
+  FEI    │  $50.04K   │  Fuse Pool 31        │  0x05e2e93cfb0b53d36a3151ee727bb581d4b918ce
+  FEI    │  $16.43M   │  Aave V2 FEI Pool    │  0xfac571b6054619053ac311da8112939c9a374a85
+  FEI    │  $1.00M    │  Fuse Pool 128 FEI   │  0xa62ddde8f799873e6fcdbb3acbba75da85d9dcde
+  FEI    │  $150.60K  │  Fuse Pool 22 FEI    │  0xa2bdbcb95d31c85bae6f0fa42d55f65d609d94ee
+  FEI    │  $151.04K  │  Fuse Pool 72 FEI    │  0x395b1bc1800fa0ad48ae3876e66d4c10d297650c
+  FEI    │  $10.02M   │  Fuse Pool 156       │  0x1370ca8655c255948d6c6110066d78680601b7c2
+  FEI    │  $5.00M    │  Compound cFEI       │  0xb80b3dc4f8b30589477b2ba0e4ef2b8224bdf0a5
+  FEI    │  $11.00M   │                      │  0x2c47fef515d2c70f2427706999e158533f7cf090
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Create-data-payload-for-app.fei.money/analytics">
+<h1>Create data payload for <code class="docutils literal notranslate"><span class="pre">app.fei.money/analytics</span></code><a class="headerlink" href="#Create-data-payload-for-app.fei.money/analytics" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fei_utils</span><span class="o">.</span><span class="n">async_create_payload</span><span class="p">(</span><span class="n">timescale</span><span class="o">=</span><span class="s1">&#39;30d,1d&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+loading events (0.109715MB across 1 files)
+loading events (0.850739MB across 1 files)
+loading events (0.000184MB across 1 files)
+loading events (0.138906MB across 1 files)
+loading events (0.090465MB across 9 files)
+loading events (258.02MB across 28 files)
+loading events (0.752028MB across 1 files)
+loading events (0.325125MB across 1 files)
+getting events from node, block range: [14661683, 14661683]
+getting events from node, block range: [14661683, 14661683]
+getting events from node, block range: [14661683, 14661683]
+getting events from node, block range: [14661683, 14661683]
+getting events from node, block range: [14661683, 14661683]
+getting events from node, block range: [14661683, 14661683]
+getting events from node, block range: [14661683, 14661683]
+getting events from node, block range: [14661683, 14661683]
+saving events to file: /home/storm/ctc_data/mainnet/events/contract__0xbaaa1f5dba42c3389bdbc2c9d2de134f5cd0dc89/event__0x8b3e96f2b889fa771c53c981b40daf005f63f637f1869f707052d15a3dd97140/14661683__to__14661683.csv
+loading events (0.109879MB across 2 files)
+saving events to file: /home/storm/ctc_data/mainnet/events/contract__0xdf50fbde8180c8785842c8e316ebe06f542d3443/event__0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67/14661683__to__14661683.csv
+loading events (0.850923MB across 2 files)
+saving events to file: /home/storm/ctc_data/mainnet/events/contract__0x8c54aa2a32a779e6f6fbea568ad85a19e0109c26/event__0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67/14661683__to__14661683.csv
+loading events (0.752213MB across 2 files)
+saving events to file: /home/storm/ctc_data/mainnet/events/contract__0xba12222222228d8ba445958a75a0704d566bf2c8/event__0x2170c741c41531aec20e7c107c24eecfdd15e69c9bb0a8dd37b1840b9e0b207b/14661683__to__14661683.csv
+loading events (258.02MB across 29 files)
+saving events to file: /home/storm/ctc_data/mainnet/events/contract__0xbb2e5c2ff298fd96e166f90c8abacaf714df14f8/event__0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67/14661683__to__14661683.csv
+loading events (0.325309MB across 2 files)
+saving events to file: /home/storm/ctc_data/mainnet/events/contract__0xc69ddcd4dfef25d8a793241834d4cc4b3668ead6/event__0xc6c1e0630dbe9130cc068028486c0d118ddcea348550819defd5cb8c257f8a38/14661683__to__14661683.csv
+loading events (0.139066MB across 2 files)
+saving events to file: /home/storm/ctc_data/mainnet/events/contract__0x5180545835bd68810fb7e11c7160bb7ea4ae8744/event__0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67/14661683__to__14661683.csv
+loading events (0.000368MB across 2 files)
+saving events to file: /home/storm/ctc_data/mainnet/events/contract__0x06cb22615ba53e60d67bf6c341a0fd5e718e1655/event__0xd013ca23e77a65003c2c659c5442c00c805371b7fc1ebd4c206c41d1536bd90b/14661683__to__14661683.csv
+loading events (0.090629MB across 10 files)
+</pre></div></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

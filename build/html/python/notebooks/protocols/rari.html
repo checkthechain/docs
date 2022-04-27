@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get all pools &mdash; Check the Chain (ctc)  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Check the Chain (ctc)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data &amp; Ops</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/obtaining_data.html">Obtaining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/storing_data.html">Storing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/monitoring.html">Monitoring</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Command Line Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/subcommands.html">Subcommands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/useful_aliases.html">Useful Aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/similar_tools.html">Similar CLI tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_tour.html">Codebase Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc_client.html">RPC Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../async_code.html">Asynchronous Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes.html">Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specific_protocols.html">Specific Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../similar_tools.html">Similar Python Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/under_construction.html">[Under Construction]</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Check the Chain (ctc)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Get all pools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/notebooks/protocols/rari.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctc.protocols</span> <span class="kn">import</span> <span class="n">rari_utils</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comptroller</span> <span class="o">=</span> <span class="s1">&#39;0xc54172e34046c1653d1920d40333dd358c7a1af4&#39;</span>
+<span class="n">ctoken</span> <span class="o">=</span> <span class="s1">&#39;0xd8553552f8868c1ef160eedf031cf0bcf9686945&#39;</span>
+<span class="n">underlying_token</span> <span class="o">=</span> <span class="s1">&#39;0x956f47f50a910163d8bf957cf5846d573e7f87ca&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Get-all-pools">
+<h1>Get all pools<a class="headerlink" href="#Get-all-pools" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fuse_pools</span> <span class="o">=</span> <span class="k">await</span> <span class="n">rari_utils</span><span class="o">.</span><span class="n">async_get_all_pools</span><span class="p">()</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">fuse_pools</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+199
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-pool-metadata">
+<h1>Get pool metadata<a class="headerlink" href="#Get-pool-metadata" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctokens</span> <span class="o">=</span> <span class="k">await</span> <span class="n">rari_utils</span><span class="o">.</span><span class="n">async_get_pool_ctokens</span><span class="p">(</span><span class="n">comptroller</span><span class="o">=</span><span class="n">comptroller</span><span class="p">)</span>
+
+<span class="n">ctokens</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&#39;0xd8553552f8868c1ef160eedf031cf0bcf9686945&#39;,
+ &#39;0xfd3300a9a74b3250f1b2abc12b47611171910b07&#39;,
+ &#39;0xbb025d470162cc5ea24daf7d4566064ee7f5f111&#39;,
+ &#39;0x7e9ce3caa9910cc048590801e64174957ed41d43&#39;,
+ &#39;0x5ca8ffe4dad9452ed880fa429dd0a08574225936&#39;,
+ &#39;0xbfb6f7532d2db0fe4d83abb001c5c2b0842af4db&#39;,
+ &#39;0x30fa046ba48c193230722ec9068ba7234e40ffd2&#39;,
+ &#39;0xb723e1dbd267d215b40c2be756b158f83b68503b&#39;,
+ &#39;0x7259ee19d6b5e755e7c65cecfd2466c09e251185&#39;,
+ &#39;0x647a36d421183a0a9fa62717a64b664a24e469c7&#39;,
+ &#39;0x0d54596900df651e6954226e1e1141f1e4980258&#39;)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">underlying_tokens</span> <span class="o">=</span> <span class="k">await</span> <span class="n">rari_utils</span><span class="o">.</span><span class="n">async_get_pool_underlying_tokens</span><span class="p">(</span><span class="n">comptroller</span><span class="o">=</span><span class="n">comptroller</span><span class="p">)</span>
+
+<span class="n">underlying_tokens</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;0xd8553552f8868c1ef160eedf031cf0bcf9686945&#39;: &#39;0x956f47f50a910163d8bf957cf5846d573e7f87ca&#39;,
+ &#39;0xfd3300a9a74b3250f1b2abc12b47611171910b07&#39;: &#39;0xc7283b66eb1eb5fb86327f08e1b5816b0720212b&#39;,
+ &#39;0xbb025d470162cc5ea24daf7d4566064ee7f5f111&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+ &#39;0x7e9ce3caa9910cc048590801e64174957ed41d43&#39;: &#39;0x6b175474e89094c44da98b954eedeac495271d0f&#39;,
+ &#39;0x5ca8ffe4dad9452ed880fa429dd0a08574225936&#39;: &#39;0xbaaa1f5dba42c3389bdbc2c9d2de134f5cd0dc89&#39;,
+ &#39;0xbfb6f7532d2db0fe4d83abb001c5c2b0842af4db&#39;: &#39;0x06cb22615ba53e60d67bf6c341a0fd5e718e1655&#39;,
+ &#39;0x30fa046ba48c193230722ec9068ba7234e40ffd2&#39;: &#39;0x3d1556e84783672f2a3bd187a592520291442539&#39;,
+ &#39;0xb723e1dbd267d215b40c2be756b158f83b68503b&#39;: &#39;0xcf84a3dc12319531e3debd48c86e68eaeaff224a&#39;,
+ &#39;0x7259ee19d6b5e755e7c65cecfd2466c09e251185&#39;: &#39;0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0&#39;,
+ &#39;0x647a36d421183a0a9fa62717a64b664a24e469c7&#39;: &#39;0x5f98805a4e8be255a32880fdec7f6728c6568ba0&#39;,
+ &#39;0x0d54596900df651e6954226e1e1141f1e4980258&#39;: &#39;0x559ebc30b0e58a45cc9ff573f77ef1e5eb1b3e18&#39;}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-pool-state">
+<h1>Get pool state<a class="headerlink" href="#Get-pool-state" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tvl_and_tvb</span> <span class="o">=</span> <span class="k">await</span> <span class="n">rari_utils</span><span class="o">.</span><span class="n">async_get_pool_tvl_and_tvb</span><span class="p">(</span><span class="n">comptroller</span><span class="o">=</span><span class="n">comptroller</span><span class="p">)</span>
+
+<span class="n">tvl_and_tvb</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;tvl&#39;: 384503474.89800626, &#39;tvb&#39;: 30519883.893904917}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="k">await</span> <span class="n">rari_utils</span><span class="o">.</span><span class="n">async_get_pool_prices</span><span class="p">(</span><span class="n">comptroller</span><span class="o">=</span><span class="n">comptroller</span><span class="p">)</span>
+
+<span class="n">prices</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;0xd8553552f8868c1ef160eedf031cf0bcf9686945&#39;: 0.9876456099258846,
+ &#39;0xfd3300a9a74b3250f1b2abc12b47611171910b07&#39;: 0.4934567526295613,
+ &#39;0xbb025d470162cc5ea24daf7d4566064ee7f5f111&#39;: 2805.42867398,
+ &#39;0x7e9ce3caa9910cc048590801e64174957ed41d43&#39;: 1.0042958619936315,
+ &#39;0x5ca8ffe4dad9452ed880fa429dd0a08574225936&#39;: 0.9893449560695989,
+ &#39;0xbfb6f7532d2db0fe4d83abb001c5c2b0842af4db&#39;: 0.9901949859663026,
+ &#39;0x30fa046ba48c193230722ec9068ba7234e40ffd2&#39;: 0.010226083648026392,
+ &#39;0xb723e1dbd267d215b40c2be756b158f83b68503b&#39;: 494.5446588275783,
+ &#39;0x7259ee19d6b5e755e7c65cecfd2466c09e251185&#39;: 2996.739633348175,
+ &#39;0x647a36d421183a0a9fa62717a64b664a24e469c7&#39;: 0.9994024599999978,
+ &#39;0x0d54596900df651e6954226e1e1141f1e4980258&#39;: 1.0198612661311361}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-ctoken-state">
+<h1>Get ctoken state<a class="headerlink" href="#Get-ctoken-state" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">rari_utils</span><span class="o">.</span><span class="n">async_get_ctoken_state</span><span class="p">(</span><span class="n">ctoken</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;tvl&#39;: 33437032.962967757,
+ &#39;tvb&#39;: 21183921.00506379,
+ &#39;supply_apy&#39;: 0.026874972827010346,
+ &#39;borrow_apy&#39;: 0.04544217360713887}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-ctoken-state-across-multiple-blocks">
+<h1>Get ctoken state across multiple blocks<a class="headerlink" href="#Get-ctoken-state-across-multiple-blocks" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">14000000</span><span class="p">,</span> <span class="mi">14100000</span><span class="p">,</span> <span class="mi">14200000</span><span class="p">]</span>
+
+<span class="k">await</span> <span class="n">rari_utils</span><span class="o">.</span><span class="n">async_get_ctoken_state_by_block</span><span class="p">(</span><span class="n">ctoken</span><span class="p">,</span> <span class="n">blocks</span><span class="o">=</span><span class="n">blocks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;tvl&#39;: [25592342.86812161, 27846764.4866587, 26131727.36829893],
+ &#39;tvb&#39;: [21279628.94118887, 25522233.17882379, 21041419.8055125],
+ &#39;supply_apy&#39;: [0.1577145831367548, 0.5777531640145352, 0.06528371436195024],
+ &#39;borrow_apy&#39;: [0.20572510722810078, 0.6961907149308775, 0.08695883809682425]}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Print-Fuse-summmary">
+<h1>Print Fuse summmary<a class="headerlink" href="#Print-Fuse-summmary" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">rari_utils</span><span class="o">.</span><span class="n">async_print_all_pool_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Rari Fuse
+─────────
+- TVL: $821.94M
+- TVB: $167.21M
+- block: 14663179
+
+  #    │  pool                      │  TVL       │  TVB
+───────┼────────────────────────────┼────────────┼────────────
+  8    │  FeiRari (Fei DAO Pool)    │  $384.5M   │  $30.52M
+  6    │  Tetranode&#39;s Pool          │  $123.17M  │  $27.28M
+  136  │  ICHI Pool                 │  $67.61M   │  $66.4M
+  7    │  Tetranode&#39;s ETH Pool      │  $49.42M   │  $10.93M
+  156  │  Tribe Convex Pool         │  $48.84M   │  $8.81M
+  18   │  Olympus Pool Party        │  $36.71M   │  $3.96M
+  127  │  0xb1&#39;s Kitchen Sink       │  $22.12M   │  $7.19M
+  36   │  Fraximalist Money Market  │  $18.7M    │  $3.11M
+  9    │  FRAX RAI Stable Pool      │  $16.96M   │  $2.68M
+  171  │  Tribe Turbo Pool          │  $10.87M   │  $0
+  27   │  Stake DAO Pool            │  $10.61M   │  $1.2M
+  144  │  Babylon&#39;s Gold Lender     │  $8.66M    │  $2.07M
+  22   │  Badger Pool               │  $8.43M    │  $1.65M
+  31   │  NFTX Pool                 │  $7.89M    │  $1.12M
+  146  │  Tribe ETH Pool            │  $7.43M    │  $305.18K
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Print-single-token-stats-across-multiple-pools">
+<h1>Print single token stats across multiple pools<a class="headerlink" href="#Print-single-token-stats-across-multiple-pools" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">rari_utils</span><span class="o">.</span><span class="n">async_print_fuse_token_summary</span><span class="p">(</span><span class="n">underlying_token</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+FEI Token Fuse Usage
+────────────────────
+- TVL: $72.21M
+- TVB: $30.81M
+- block: 14663180
+
+  pool                               │  TVL       │  TVB         │  supply %    │  borrow %   │  util %
+─────────────────────────────────────┼────────────┼──────────────┼──────────────┼─────────────┼──────────
+  Tetranode&#39;s Flavor of the Month    │  $33.44M   │  $21.18M     │  2.69%       │  4.54%      │  63.35%
+  Tribe Turbo Pool                   │  $10.87M   │  $0          │  0%          │  0%         │  0%
+  Tribe Convex Pool                  │  $9.9M     │  $2.99M      │  0.575021%   │  2.13%      │  30.16%
+  Tetranode&#39;s ETH Pool               │  $5.76M    │  $2.42M      │  1.6%        │  4.29%      │  41.94%
+  Tetranode&#39;s Pool                   │  $3.74M    │  $983.68K    │  1.28%       │  5.46%      │  26.3%
+  Fox and Frens                      │  $2.53M    │  $1.67M      │  2.64%       │  4.75%      │  65.91%
+  Stake DAO Pool                     │  $1.3M     │  $102.33K    │  0.101968%   │  1.61%      │  7.9%
+  Babylon&#39;s Gold Lender              │  $1.06M    │  $580.35K    │  1.7%        │  3.92%      │  54.87%
+  UMA Community Pool                 │  $988.16K  │  $24.96K     │  0.066499%   │  3.34%      │  2.53%
+  Olympus Pool Party                 │  $833.44K  │  $304.66K    │  2.36%       │  7.99%      │  36.55%
+  Index Coop Pool                    │  $592.82K  │  $1.538e-12  │  0%          │  0%         │  0%
+  Harvest FARMstead                  │  $448.89K  │  $113.68K    │  1.02%       │  4.4%       │  25.32%
+  Float Protocol Pool                │  $352.03K  │  $352.03K    │  413.06%     │  583.43%    │  100%
+  Badger Pool                        │  $153.51K  │  $88.29K     │  3.22%       │  6.12%      │  57.51%
+  troopersGarage                     │  $151.84K  │  $2.615e-13  │  0%          │  2.53%      │  0%
+  Barnbridge pool                    │  $49.56K   │  $1.3K       │  0.003909%   │  0.185122%  │  2.63%
+  NFTX Pool                          │  $49.43K   │  $3.87K      │  0.098403%   │  1.58%      │  7.84%
+  Token Mass Injection Pool          │  $120.06   │  $1.02e-12   │  683.91%     │  31.65%     │  0%
+  G-UNI                              │  $48.86    │  $2.536e-13  │  50,616.83%  │  1,151.29%  │  0%
+  Frax &amp; Reflexer Stable Asset Pool  │  $10.1     │  $5.537e-13  │  0%          │  0.000003%  │  0%
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-token-stats-across-multiple-pools">
+<h1>Get token stats across multiple pools<a class="headerlink" href="#Get-token-stats-across-multiple-pools" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">token_stats</span> <span class="o">=</span> <span class="k">await</span> <span class="n">rari_utils</span><span class="o">.</span><span class="n">async_get_token_multipool_stats</span><span class="p">(</span><span class="s1">&#39;0x956f47f50a910163d8bf957cf5846d573e7f87ca&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;- aggregate stats:&#39;</span><span class="p">,</span> <span class="n">token_stats</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;- # pools:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">token_stats</span><span class="p">[</span><span class="s1">&#39;per_pool&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;- stats given for each pool:&#39;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">token_stats</span><span class="p">[</span><span class="s1">&#39;per_pool&#39;</span><span class="p">][</span><span class="n">comptroller</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+- aggregate stats: {&#39;tvl&#39;: 72210029.4080428, &#39;tvb&#39;: 30809701.356009685}
+- # pools: 42
+- stats given for each pool: [&#39;tvl&#39;, &#39;tvb&#39;, &#39;ctoken&#39;, &#39;matches&#39;, &#39;supply_apy&#39;, &#39;borrow_apy&#39;, &#39;name&#39;, &#39;pool_index&#39;]
+</pre></div></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

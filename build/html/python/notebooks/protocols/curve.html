@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get pool metadata &mdash; Check the Chain (ctc)  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Check the Chain (ctc)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data &amp; Ops</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/obtaining_data.html">Obtaining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/storing_data.html">Storing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/monitoring.html">Monitoring</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Command Line Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/subcommands.html">Subcommands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/useful_aliases.html">Useful Aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/similar_tools.html">Similar CLI tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_tour.html">Codebase Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc_client.html">RPC Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../async_code.html">Asynchronous Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes.html">Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specific_protocols.html">Specific Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../similar_tools.html">Similar Python Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/under_construction.html">[Under Construction]</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Check the Chain (ctc)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Get pool metadata</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/notebooks/protocols/curve.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctc.protocols</span> <span class="kn">import</span> <span class="n">curve_utils</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factory_pool</span> <span class="o">=</span> <span class="s1">&#39;0x06cb22615ba53e60d67bf6c341a0fd5e718e1655&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Get-pool-metadata">
+<h1>Get pool metadata<a class="headerlink" href="#Get-pool-metadata" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">curve_utils</span><span class="o">.</span><span class="n">async_get_pool_metadata</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">factory_pool</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;token_addresses&#39;: [&#39;0x956f47f50a910163d8bf957cf5846d573e7f87ca&#39;,
+  &#39;0x6c3f90f043a72fa612cbac8115ee7e52bde6e490&#39;],
+ &#39;token_symbols&#39;: [&#39;FEI&#39;, &#39;3Crv&#39;],
+ &#39;token_decimals&#39;: [18, 18],
+ &#39;A&#39;: 100}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-pool-state">
+<h1>Get pool state<a class="headerlink" href="#Get-pool-state" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">curve_utils</span><span class="o">.</span><span class="n">async_get_pool_state</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">factory_pool</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;lp_total_supply&#39;: 152826488.29691935,
+ &#39;token_balances&#39;: [81039349.02401723, 70717829.22009993],
+ &#39;A&#39;: 100}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-pool-state-in-a-specific-block">
+<h1>Get pool state in a specific block<a class="headerlink" href="#Get-pool-state-in-a-specific-block" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">curve_utils</span><span class="o">.</span><span class="n">async_get_pool_state</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">factory_pool</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="mi">14000000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;lp_total_supply&#39;: 253036543.47482586,
+ &#39;token_balances&#39;: [126538335.35590503, 124462159.0647215],
+ &#39;A&#39;: 10}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-virtual-price">
+<h1>Get virtual price<a class="headerlink" href="#Get-virtual-price" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">curve_utils</span><span class="o">.</span><span class="n">async_get_virtual_price</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">factory_pool</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1002581522793017357
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-base-pools">
+<h1>Get base pools<a class="headerlink" href="#Get-base-pools" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">curve_utils</span><span class="o">.</span><span class="n">async_get_base_pools</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>factory</th>
+      <th>transaction_hash</th>
+      <th>pool</th>
+    </tr>
+    <tr>
+      <th>block_number</th>
+      <th>transaction_index</th>
+      <th>log_index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12904539</th>
+      <th>152</th>
+      <th>213</th>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>0xedfeb49642fb5c9f2220bbf3eddca5a3ef50a68713b8...</td>
+      <td>0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7</td>
+    </tr>
+    <tr>
+      <th>12904585</th>
+      <th>85</th>
+      <th>220</th>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>0xcb6be4a26a2c224a32bad4fc9ba88652be0235dc82d5...</td>
+      <td>0x7fc77b5c7614e1533320ea6ddc2eb61fa00a9714</td>
+    </tr>
+    <tr>
+      <th>13495769</th>
+      <th>105</th>
+      <th>194</th>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>0xad288f471da6aca0625173e19030d80f3e02e4d736da...</td>
+      <td>0x93054188d876f558f4a66b2ef1d97d16edf0895b</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Get-meta-pools">
+<h1>Get meta pools<a class="headerlink" href="#Get-meta-pools" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">curve_utils</span><span class="o">.</span><span class="n">async_get_meta_pools</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>transaction_hash</th>
+      <th>factory</th>
+      <th>coin</th>
+      <th>base_pool</th>
+      <th>A</th>
+      <th>fee</th>
+      <th>deployer</th>
+    </tr>
+    <tr>
+      <th>block_number</th>
+      <th>transaction_index</th>
+      <th>log_index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>11955325</th>
+      <th>16</th>
+      <th>25</th>
+      <td>0xfcf2e192b7fe9e094a111e7df4c00bef20af78056278...</td>
+      <td>0x0959158b6040d32d04c301a72cbfd6b39e21c9ae</td>
+      <td>0x865377367054516e17014ccded1e7d814edc9ce4</td>
+      <td>0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7</td>
+      <td>10</td>
+      <td>4000000</td>
+      <td>0x3fcb35a1cbfb6007f9bc638d388958bc4550cb28</td>
+    </tr>
+    <tr>
+      <th>11955333</th>
+      <th>61</th>
+      <th>73</th>
+      <td>0x298f34b7b6c496352effba8fdb91f5249e1cfbee24d9...</td>
+      <td>0x0959158b6040d32d04c301a72cbfd6b39e21c9ae</td>
+      <td>0xbc6da0fe9ad5f3b0d58160288917aa56653660e9</td>
+      <td>0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7</td>
+      <td>60</td>
+      <td>4000000</td>
+      <td>0xef422dbbf46120de627ffb913c9afad44c735618</td>
+    </tr>
+    <tr>
+      <th>11968730</th>
+      <th>110</th>
+      <th>187</th>
+      <td>0x1f2a0d4e1c1eca594bd7f27f9952480ccda422c3453e...</td>
+      <td>0x0959158b6040d32d04c301a72cbfd6b39e21c9ae</td>
+      <td>0x853d955acef822db058eb8505911ed77f175b99e</td>
+      <td>0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x234d953a9404bf9dbc3b526271d440cd2870bcd2</td>
+    </tr>
+    <tr>
+      <th>11975574</th>
+      <th>213</th>
+      <th>33</th>
+      <td>0x4aeacf4bf11becac10f2bfbe3319e182af520927c91f...</td>
+      <td>0x0959158b6040d32d04c301a72cbfd6b39e21c9ae</td>
+      <td>0xa774ffb4af6b0a91331c084e1aebae6ad535e6f3</td>
+      <td>0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0x60cc20c5ff95cc46b4ed606d940f657ad054c309</td>
+    </tr>
+    <tr>
+      <th>11976084</th>
+      <th>132</th>
+      <th>152</th>
+      <td>0xd1db8f97364aed51707e7ec7abf158d43627b75decdc...</td>
+      <td>0x0959158b6040d32d04c301a72cbfd6b39e21c9ae</td>
+      <td>0x71df9dd3e658f0136c40e2e8ec3988a5226e9a67</td>
+      <td>0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0x60cc20c5ff95cc46b4ed606d940f657ad054c309</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14350627</th>
+      <th>200</th>
+      <th>348</th>
+      <td>0x104daf19e330004a5037706b34a3a18fb71fc3ab9e8e...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>0x804c23b6ccfa0a1fae1a81c9964f42ae689c790e</td>
+      <td>0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0x0803cb8cf4a3a451db8ed5378e4d70b34b4fdd01</td>
+    </tr>
+    <tr>
+      <th>14353005</th>
+      <th>33</th>
+      <th>60</th>
+      <td>0xb82cd4d90187884feda0706a986b0cf9247308ee8fa3...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>0x62199b909fb8b8cf870f97bef2ce6783493c4908</td>
+      <td>0x7fc77b5c7614e1533320ea6ddc2eb61fa00a9714</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0xf62de2c20aab66cec4791ec4e394dc28f46d2c25</td>
+    </tr>
+    <tr>
+      <th>14575216</th>
+      <th>49</th>
+      <th>97</th>
+      <td>0xeef4407aafb48cc8d944f9c6dede90a6cbcded31222a...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>0x586aa273f262909eef8fa02d90ab65f5015e0516</td>
+      <td>0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0xd22886236f453e9407f54cc2706b2e9c87789702</td>
+    </tr>
+    <tr>
+      <th>14643506</th>
+      <th>124</th>
+      <th>332</th>
+      <td>0x906969fdc56e0e0bd95cff82ef673ca8cf30ad808868...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>0x466a756e9a7401b5e2444a3fcb3c2c12fbea0a54</td>
+      <td>0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x7a271674b5fae043f42f183092f48fb06d6d551b</td>
+    </tr>
+    <tr>
+      <th>14644045</th>
+      <th>275</th>
+      <th>542</th>
+      <td>0x148c16e3bb2d459882d1cb6f40e8b565ffda28628297...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>0x466a756e9a7401b5e2444a3fcb3c2c12fbea0a54</td>
+      <td>0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x51c2cef9efa48e08557a361b52db34061c025a1b</td>
+    </tr>
+  </tbody>
+</table>
+<p>149 rows × 7 columns</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="Get-plain-pools">
+<h1>Get plain pools<a class="headerlink" href="#Get-plain-pools" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">curve_utils</span><span class="o">.</span><span class="n">async_get_plain_pools</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>transaction_hash</th>
+      <th>factory</th>
+      <th>coins</th>
+      <th>A</th>
+      <th>fee</th>
+      <th>deployer</th>
+    </tr>
+    <tr>
+      <th>block_number</th>
+      <th>transaction_index</th>
+      <th>log_index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12913531</th>
+      <th>22</th>
+      <th>37</th>
+      <td>0x024843f829ec485c27acb115f94d5374c19f14301ceb...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x96e61422b6a9ba0e068b6c5add4ffabc6a4aae27',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0xb424338eaa86953d82b5fabf042ce2eac544c043</td>
+    </tr>
+    <tr>
+      <th>12914704</th>
+      <th>169</th>
+      <th>31</th>
+      <td>0x471bb1cbfbca89c98ecc0eb3e00328c41c7e5d5d8490...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xc581b735a1688071a1746c968e0798d642ede491',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x7eeac6cddbd1d0b8af061742d41877d7f707289a</td>
+    </tr>
+    <tr>
+      <th>12925098</th>
+      <th>158</th>
+      <th>233</th>
+      <td>0x177b4b07b92004c80b773e66ea3257c12ded04df5311...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x95dfdc8161832e4ff7816ac4b6367ce201538253',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x2d407ddb06311396fe14d4b49da5f0471447d45c</td>
+    </tr>
+    <tr>
+      <th>12931794</th>
+      <th>112</th>
+      <th>106</th>
+      <td>0x2aa30ad95aa6b05c09c82320844d515a76bb5575639c...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x96e61422b6a9ba0e068b6c5add4ffabc6a4aae27',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x2d407ddb06311396fe14d4b49da5f0471447d45c</td>
+    </tr>
+    <tr>
+      <th>12983315</th>
+      <th>221</th>
+      <th>310</th>
+      <td>0x0c9d012f02f83046b4556fe7e2d4d9a90888c4e966e2...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xd38aeb759891882e78e957c80656572503d8c1b1',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0xd3b74abc95169b9c183409218c3d0fbff4ae67ee</td>
+    </tr>
+    <tr>
+      <th>12983888</th>
+      <th>308</th>
+      <th>389</th>
+      <td>0x48522285921fd79fd901027a76e7d09f8ef37f3e88fe...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x7409856cae628f5d578b285b45669b36e7005283',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0xc31249ba48763df46388ba5c4e7565d62ed4801c</td>
+    </tr>
+    <tr>
+      <th>12984119</th>
+      <th>164</th>
+      <th>240</th>
+      <td>0x0cead063cd24b9fa2f98ed76787411a943bc11a22c8e...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xd533a949740bb3306d119cc777fa900ba034cd52',...</td>
+      <td>10</td>
+      <td>15000000</td>
+      <td>0x0000000000e189dd664b9ab08a33c4839953852c</td>
+    </tr>
+    <tr>
+      <th>12986346</th>
+      <th>141</th>
+      <th>178</th>
+      <td>0xf98ac1ba6f31363b84b294da8d6d83c8e7fa6ed7bde3...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xd533a949740bb3306d119cc777fa900ba034cd52',...</td>
+      <td>10</td>
+      <td>4000000</td>
+      <td>0x7a1057e6e9093da9c1d4c1d049609b6889fc4c67</td>
+    </tr>
+    <tr>
+      <th>13042152</th>
+      <th>97</th>
+      <th>210</th>
+      <td>0x2ecbe236420fc68cd0c9fb11c706cdddd490cae1f142...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xbcca60bb61934080951369a648fb03df4f96263c',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x1659dea580b3adfb3bc689b03f718cbecfa1cea3</td>
+    </tr>
+    <tr>
+      <th>13056724</th>
+      <th>156</th>
+      <th>223</th>
+      <td>0x2fa0680cf5780e310e3cb3a68c1b065f616649ad6706...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xd533a949740bb3306d119cc777fa900ba034cd52',...</td>
+      <td>50</td>
+      <td>15000000</td>
+      <td>0xbabe61887f1de2713c6f97e567623453d3c79f67</td>
+    </tr>
+    <tr>
+      <th>13069248</th>
+      <th>215</th>
+      <th>269</th>
+      <td>0xff1a502740d63b5d69a98ccb9be497175915554d24d5...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x68037790a0229e9ce6eaa8a99ea92964106c4703',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0xac3203d77823496e421aa7e88cdc2f6c387d6182</td>
+    </tr>
+    <tr>
+      <th>13099579</th>
+      <th>14</th>
+      <th>118</th>
+      <td>0x5e822d0e2efca551e55d0104fd426e381333ee57af54...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x5555f75e3d5278082200fb451d1b6ba946d8e13b',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x2d407ddb06311396fe14d4b49da5f0471447d45c</td>
+    </tr>
+    <tr>
+      <th>13099582</th>
+      <th>154</th>
+      <th>141</th>
+      <td>0x863b9a8adb687a98e72f6f13d8939755152d92b851f2...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xfafdf0c4c1cb09d430bf88c75d88bb46dae09967',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x2d407ddb06311396fe14d4b49da5f0471447d45c</td>
+    </tr>
+    <tr>
+      <th>13099589</th>
+      <th>3</th>
+      <th>25</th>
+      <td>0x3d3af4be362417f6bfb6f2d454e6189c766a72d981a0...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x69681f8fde45345c3870bcd5eaf4a05a60e7d227',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x2d407ddb06311396fe14d4b49da5f0471447d45c</td>
+    </tr>
+    <tr>
+      <th>13099601</th>
+      <th>285</th>
+      <th>313</th>
+      <td>0x0765b79b23975807bac041320d4838b8939be9a27571...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x1cc481ce2bd2ec7bf67d1be64d4878b16078f309',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x2d407ddb06311396fe14d4b49da5f0471447d45c</td>
+    </tr>
+    <tr>
+      <th>13105712</th>
+      <th>152</th>
+      <th>234</th>
+      <td>0x50c363f060a7da3ee859f144d5bcef9ab81efca690aa...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x69e8b9528cabda89fe846c67675b5d73d463a916',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x10ddac60eaf89db552fe139b37eb4099a3be186e</td>
+    </tr>
+    <tr>
+      <th>13125980</th>
+      <th>46</th>
+      <th>53</th>
+      <td>0xa185798369560f36ebe13fd16cfbb740aeb68f51566a...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x9fcf418b971134625cdf38448b949c8640971671',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0xdab3bccc8ef404787c509fe45583d6ed537effe4</td>
+    </tr>
+    <tr>
+      <th>13139209</th>
+      <th>129</th>
+      <th>202</th>
+      <td>0xb8f621bd157f7096d86ed5a75812700d33bde5520283...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x478bbc744811ee8310b461514bdc29d03739084d',...</td>
+      <td>200</td>
+      <td>15500000</td>
+      <td>0x0411e650dff0c6680c9e147f2413e0480718aa27</td>
+    </tr>
+    <tr>
+      <th>13218109</th>
+      <th>451</th>
+      <th>425</th>
+      <td>0xa100c95fdd7b3f1b111dd9875c22912fffaca70afcfb...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x57ab1ec28d129707052df4df418d58a2d46d5f51',...</td>
+      <td>10</td>
+      <td>4000000</td>
+      <td>0x7a1ead2eff5c17674e7547b46203b7ec7cffc9c8</td>
+    </tr>
+    <tr>
+      <th>13227441</th>
+      <th>99</th>
+      <th>193</th>
+      <td>0x73982f3e1fb57a146d824c5061444a3abf499b8b8c8c...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0xf872703f1c8f93fa186869bac83bac5a0c87c3c8</td>
+    </tr>
+    <tr>
+      <th>13338726</th>
+      <th>31</th>
+      <th>56</th>
+      <td>0x658c4fabdcd965b8ace856b4445cb41b766911e95124...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x99d8a9c45b2eca8864373a26d1459e3dff1e17f3',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0x8a7f7c5b556b1298a74c0e89df46eba117a2f6c1</td>
+    </tr>
+    <tr>
+      <th>13384216</th>
+      <th>176</th>
+      <th>321</th>
+      <td>0x036ee424a43d98b33307b72a47fd04709c148929eeca...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x898bad2774eb97cf6b94605677f43b41871410b1',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x610c92c70eb55dfeafe8970513d13771da79f2e0</td>
+    </tr>
+    <tr>
+      <th>13410303</th>
+      <th>34</th>
+      <th>46</th>
+      <td>0x4635a5eca346e43d5fdbdb1cb4e2261b8eb490b333a3...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x4e3fbd56cd56c3e72c1403e103b45db9da5b9d2b',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0xb2043afec208f170f6fb8a88284330c879105ff7</td>
+    </tr>
+    <tr>
+      <th>13420467</th>
+      <th>156</th>
+      <th>711</th>
+      <td>0xda9a18e35f1b120b98313fd4ea9ab4c57b204f58a46d...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0xae1c38847fb90a13a2a1d7e5552ccd80c62c6508</td>
+    </tr>
+    <tr>
+      <th>13437673</th>
+      <th>85</th>
+      <th>124</th>
+      <td>0x9452419cd0b0c62da5a653a159496122b1e9c6c23425...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x853d955acef822db058eb8505911ed77f175b99e',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0xa448833bece66fd8803ac0c390936c79b5fd6edf</td>
+    </tr>
+    <tr>
+      <th>13447607</th>
+      <th>54</th>
+      <th>91</th>
+      <td>0x00a91c92dbd30335615b19dbb0a05cc183373a462213...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0xae1c38847fb90a13a2a1d7e5552ccd80c62c6508</td>
+    </tr>
+    <tr>
+      <th>13572001</th>
+      <th>238</th>
+      <th>304</th>
+      <td>0x895b72bec2e2f0b368343976906ee61d267392e64593...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x116172b2482c5dc3e6f445c16ac13367ac3fcd35',...</td>
+      <td>10</td>
+      <td>4000000</td>
+      <td>0xcd4f467363ec0c850c4251077248e4a9f5f6228a</td>
+    </tr>
+    <tr>
+      <th>13583113</th>
+      <th>75</th>
+      <th>86</th>
+      <td>0xd249e7fc4975d64829463ba2acce2a39edb610a433b7...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x1a7e4e63778b4f12a199c062f3efdd288afcbce8',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0x3d38c35d8e590da1f4fea470af46d40687caef88</td>
+    </tr>
+    <tr>
+      <th>13588113</th>
+      <th>0</th>
+      <th>3</th>
+      <td>0x07e4c8c5a9c839d5f7ef308a3762bafe0b1e99133ca6...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x8cb24ed2e4f7e2065f4eb2be5f6b0064b1919850',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0x2d407ddb06311396fe14d4b49da5f0471447d45c</td>
+    </tr>
+    <tr>
+      <th>13627050</th>
+      <th>237</th>
+      <th>282</th>
+      <td>0x18fec9a3c4c680d022104b5aa9ebd0f7a0831b4b799e...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x1a7e4e63778b4f12a199c062f3efdd288afcbce8',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0xcf263cee139763114faafc5f52865135412f50ec</td>
+    </tr>
+    <tr>
+      <th>13647028</th>
+      <th>79</th>
+      <th>130</th>
+      <td>0x90a602ca3d81f21a46dc8e066a136eb8be997c7378cd...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xd3d13a578a53685b4ac36a1bab31912d2b2a2f36',...</td>
+      <td>10</td>
+      <td>4000000</td>
+      <td>0x90b6c61b102ea260131ab48377e143d6eb3a9d4b</td>
+    </tr>
+    <tr>
+      <th>13763779</th>
+      <th>135</th>
+      <th>125</th>
+      <td>0x7581a18e7396263145fa395659fb3568d1f08e004608...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x2370f9d504c7a6e775bf6e14b3f12846b594cd53',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0x2d407ddb06311396fe14d4b49da5f0471447d45c</td>
+    </tr>
+    <tr>
+      <th>13763823</th>
+      <th>139</th>
+      <th>210</th>
+      <td>0xe9626832da3b8501111d014f3a77ad7e990697e609e6...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xa693b19d2931d498c5b318df961919bb4aee87a5',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0x17359937bc169a348aaea90871765aca4071c8d3</td>
+    </tr>
+    <tr>
+      <th>13764838</th>
+      <th>222</th>
+      <th>279</th>
+      <td>0x1d1628cf9f7b0d8966b25fa1dfbdccf2a923c64ba203...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x683923db55fead99a79fa01a27eec3cb19679cc3',...</td>
+      <td>1000</td>
+      <td>4000000</td>
+      <td>0xce96fe7eb7186e9f894de7703b4df8ea60e2dd77</td>
+    </tr>
+    <tr>
+      <th>13771105</th>
+      <th>40</th>
+      <th>62</th>
+      <td>0xbb03ec2fdbeb755c8d20bc191c05e90f740eb55ed626...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x4e3fbd56cd56c3e72c1403e103b45db9da5b9d2b',...</td>
+      <td>50</td>
+      <td>15000000</td>
+      <td>0x8e0b94a789c26f21b141f99c888b84a8cd21a5dd</td>
+    </tr>
+    <tr>
+      <th>13815271</th>
+      <th>254</th>
+      <th>257</th>
+      <td>0x12a074bc78a061862cd9b23e48ed1869d4006934f4ee...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x96e61422b6a9ba0e068b6c5add4ffabc6a4aae27',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0x2d407ddb06311396fe14d4b49da5f0471447d45c</td>
+    </tr>
+    <tr>
+      <th>13923282</th>
+      <th>16</th>
+      <th>51</th>
+      <td>0xee88a8a2e9dd1ee6075618ce1de5c7978a5005685391...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x94671a3cee8c7a12ea72602978d1bb84e920efb2',...</td>
+      <td>1000000000</td>
+      <td>4000000</td>
+      <td>0x9e0bce7ec474b481492610eb9dd5d69eb03718d5</td>
+    </tr>
+    <tr>
+      <th>14258103</th>
+      <th>186</th>
+      <th>221</th>
+      <td>0xac82634453bde9369a91037145367e1a1403a11d5b41...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x2fc6e9c1b2c07e18632efe51879415a580ad22e1',...</td>
+      <td>1000000000</td>
+      <td>4000000</td>
+      <td>0x9e0bce7ec474b481492610eb9dd5d69eb03718d5</td>
+    </tr>
+    <tr>
+      <th>14258201</th>
+      <th>130</th>
+      <th>307</th>
+      <td>0xa74b2b9913f0b6f4b98240a38e01a7a572ba43aeed2a...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xeff721eae19885e17f5b80187d6527aad3ffc8de',...</td>
+      <td>1000000000</td>
+      <td>4000000</td>
+      <td>0x9e0bce7ec474b481492610eb9dd5d69eb03718d5</td>
+    </tr>
+    <tr>
+      <th>14258216</th>
+      <th>171</th>
+      <th>352</th>
+      <td>0x62118e01f56bd9ef5729f060b6cb92b7a7152c024992...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xae78736cd615f374d3085123a210448e74fc6393',...</td>
+      <td>50</td>
+      <td>4000000</td>
+      <td>0x89261103fa88a913c8d0debd00574fd16895407d</td>
+    </tr>
+    <tr>
+      <th>14258246</th>
+      <th>97</th>
+      <th>223</th>
+      <td>0x3b2b03ba53435b452d3919a5ecffd87764a79a1b557f...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xdc0b02849bb8e0f126a216a2840275da829709b0',...</td>
+      <td>1000000000</td>
+      <td>4000000</td>
+      <td>0x9e0bce7ec474b481492610eb9dd5d69eb03718d5</td>
+    </tr>
+    <tr>
+      <th>14258254</th>
+      <th>9</th>
+      <th>15</th>
+      <td>0x831d14585e3350c92f2f7764d86ee5e1a2ff64c1199e...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x15a629f0665a3eb97d7ae9a7ce7abf73aeb79415',...</td>
+      <td>1000000000</td>
+      <td>4000000</td>
+      <td>0x9e0bce7ec474b481492610eb9dd5d69eb03718d5</td>
+    </tr>
+    <tr>
+      <th>14258264</th>
+      <th>9</th>
+      <th>18</th>
+      <td>0xfdeeeede11df1ad51154832812cd645659de365bacd5...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x808d3e6b23516967ceae4f17a5f9038383ed5311',...</td>
+      <td>1000000000</td>
+      <td>4000000</td>
+      <td>0x9e0bce7ec474b481492610eb9dd5d69eb03718d5</td>
+    </tr>
+    <tr>
+      <th>14258291</th>
+      <th>10</th>
+      <th>15</th>
+      <td>0xc9f34b9d461d6717e46b3a1d123d8e934a31fe6f6b12...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xf49764c9c5d644ece6ae2d18ffd9f1e902629777',...</td>
+      <td>1000000000</td>
+      <td>4000000</td>
+      <td>0x9e0bce7ec474b481492610eb9dd5d69eb03718d5</td>
+    </tr>
+    <tr>
+      <th>14258305</th>
+      <th>11</th>
+      <th>49</th>
+      <td>0x3fc91a72dd9ce3b9e3f3b71e7cc0a552213d80e9d929...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xd3b5d9a561c293fb42b446fe7e237daa9bf9aa84',...</td>
+      <td>1000000000</td>
+      <td>4000000</td>
+      <td>0x9e0bce7ec474b481492610eb9dd5d69eb03718d5</td>
+    </tr>
+    <tr>
+      <th>14258326</th>
+      <th>14</th>
+      <th>36</th>
+      <td>0x82a389b9aec70c5df1ff638fd17a0df6a41a6262665e...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xadf15ec41689fc5b6dca0db7c53c9bfe7981e655',...</td>
+      <td>1000000000</td>
+      <td>4000000</td>
+      <td>0x9e0bce7ec474b481492610eb9dd5d69eb03718d5</td>
+    </tr>
+    <tr>
+      <th>14320969</th>
+      <th>339</th>
+      <th>574</th>
+      <td>0x67570a2ac0cea270dcfc0407ba6d5142cb916cf769e8...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xadf15ec41689fc5b6dca0db7c53c9bfe7981e655',...</td>
+      <td>200</td>
+      <td>4000000</td>
+      <td>0x9e0bce7ec474b481492610eb9dd5d69eb03718d5</td>
+    </tr>
+    <tr>
+      <th>14352521</th>
+      <th>58</th>
+      <th>67</th>
+      <td>0x6c12285a9e0aef3f724c79f31166da0cba968a15fba4...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x92d6c1e31e14520e676a687f0a93788b716beff5',...</td>
+      <td>10</td>
+      <td>4000000</td>
+      <td>0x8135d8ccd2acbe575ebf1827349185df7185cf97</td>
+    </tr>
+    <tr>
+      <th>14359804</th>
+      <th>7</th>
+      <th>10</th>
+      <td>0x44d990e4a64e80d089780bc15616018526b18cc6c4b0...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x3432b6a60d23ca0dfca7761b7ab56459d9c964d0',...</td>
+      <td>10</td>
+      <td>4000000</td>
+      <td>0xb36a0671b3d49587236d7833b01e79798175875f</td>
+    </tr>
+    <tr>
+      <th>14359842</th>
+      <th>11</th>
+      <th>15</th>
+      <td>0x370ffab0e1280d171f5178667230189269257bfddca9...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x31429d1856ad1377a8a0079410b297e1a9e214c2',...</td>
+      <td>10</td>
+      <td>4000000</td>
+      <td>0xb36a0671b3d49587236d7833b01e79798175875f</td>
+    </tr>
+    <tr>
+      <th>14437811</th>
+      <th>50</th>
+      <th>68</th>
+      <td>0xf1c1aeb5ffe7aab409ca152cd379dca57901bc99990c...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xfe32747d0251ba92bcb80b6d16c8257ecf25ab1c',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0xd6d30f186e802c1558b8137bd730f7f4aec17ae7</td>
+    </tr>
+    <tr>
+      <th>14450075</th>
+      <th>301</th>
+      <th>384</th>
+      <td>0x545b5cc61fa6a78816cb703d2162640a07f1b2f79676...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xdc59ac4fefa32293a95889dc396682858d52e5db',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0x925753106fcdb6d2f30c3db295328a0a1c5fd1d1</td>
+    </tr>
+    <tr>
+      <th>14482675</th>
+      <th>100</th>
+      <th>368</th>
+      <td>0x2c33a4f67dfa957d731e431348610d8c7fde7c84016e...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xfe2e637202056d30016725477c5da089ab0a043a',...</td>
+      <td>50</td>
+      <td>4000000</td>
+      <td>0x61b01a33aea3e827b3941ab097778bd3fa48a332</td>
+    </tr>
+    <tr>
+      <th>14482785</th>
+      <th>215</th>
+      <th>388</th>
+      <td>0x9868762a164781398295c896488101209a23398bb39c...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xfe2e637202056d30016725477c5da089ab0a043a',...</td>
+      <td>50</td>
+      <td>4000000</td>
+      <td>0x61b01a33aea3e827b3941ab097778bd3fa48a332</td>
+    </tr>
+    <tr>
+      <th>14485339</th>
+      <th>209</th>
+      <th>360</th>
+      <td>0x3cab83a3237ab181b9e69061ca63965d178d3ede126f...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xd6ecdfd41ddb7167f3ed9b37f33fb24d57543e26',...</td>
+      <td>50</td>
+      <td>30000000</td>
+      <td>0x1128076b88ebc51e9c0b0b1ed64ec2fe45bd47df</td>
+    </tr>
+    <tr>
+      <th>14577663</th>
+      <th>299</th>
+      <th>473</th>
+      <td>0x6e280f2288940c3037da354eb4f1c67967939fdb95d1...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xd533a949740bb3306d119cc777fa900ba034cd52',...</td>
+      <td>10</td>
+      <td>4000000</td>
+      <td>0x2949c8b8522b3e096deeb8865fccc17c64f20cc0</td>
+    </tr>
+    <tr>
+      <th>14577668</th>
+      <th>51</th>
+      <th>68</th>
+      <td>0x4bcc6068c4bfb42d89adde97cb7500f63b4942046aec...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0xd533a949740bb3306d119cc777fa900ba034cd52',...</td>
+      <td>10</td>
+      <td>4000000</td>
+      <td>0x2949c8b8522b3e096deeb8865fccc17c64f20cc0</td>
+    </tr>
+    <tr>
+      <th>14591188</th>
+      <th>223</th>
+      <th>315</th>
+      <td>0xb4c7083e864de60115a05832643f050b4441dc48c2d0...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x79317218de52dfa2a233a3aeed098161889418c7',...</td>
+      <td>10</td>
+      <td>15000000</td>
+      <td>0x8dc7371d855bcf361655ace52eaea10c78ef579e</td>
+    </tr>
+    <tr>
+      <th>14605874</th>
+      <th>56</th>
+      <th>191</th>
+      <td>0x3e7b04f9afa1da1e934cfce05a1317821b70bf5b30a1...</td>
+      <td>0xb9fc157394af804a3578134a6585c0dc9cc990d4</td>
+      <td>('0x973f054edbecd287209c36a2651094fa52f99a71',...</td>
+      <td>100</td>
+      <td>4000000</td>
+      <td>0xecce08c2636820a81fc0c805dbdc7d846636bbc4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

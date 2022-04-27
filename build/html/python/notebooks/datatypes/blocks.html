@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get block &mdash; Check the Chain (ctc)  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Check the Chain (ctc)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data &amp; Ops</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/obtaining_data.html">Obtaining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/storing_data.html">Storing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/monitoring.html">Monitoring</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Command Line Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/subcommands.html">Subcommands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/useful_aliases.html">Useful Aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/similar_tools.html">Similar CLI tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_tour.html">Codebase Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc_client.html">RPC Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../async_code.html">Asynchronous Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes.html">Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specific_protocols.html">Specific Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../similar_tools.html">Similar Python Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/under_construction.html">[Under Construction]</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Check the Chain (ctc)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Get block</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/notebooks/datatypes/blocks.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctc</span> <span class="kn">import</span> <span class="n">evm</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Get-block">
+<h1>Get block<a class="headerlink" href="#Get-block" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">block</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_block</span><span class="p">(</span><span class="mi">14000000</span><span class="p">)</span>
+
+<span class="n">block</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;number&#39;: 14000000,
+ &#39;base_fee_per_gas&#39;: 139541559304,
+ &#39;difficulty&#39;: 12316581093827601,
+ &#39;extra_data&#39;: &#39;0x6175737472616c69612d736f75746865617374312d31&#39;,
+ &#39;gas_limit&#39;: 30058561,
+ &#39;gas_used&#39;: 8119826,
+ &#39;hash&#39;: &#39;0x9bff49171de27924fa958faf7b7ce605c1ff0fdee86f4c0c74239e6ae20d9446&#39;,
+ &#39;logs_bloom&#39;: &#39;0x083815041300081040f485088003de10046040491c3c0164189830ca3c2c0d1121040493008ba600924849820c8901130b0084038802610706000b6101b220d01210000400020b08480850880d0226a04024e107005114513410021080080451126063400a1084021c62bc08290008a0430081540c892545360c401410194021426103228249162800ac016601100d0520b96203432080086a00424d8214010b63180471318634d0ae00108041a1184488a10841a2610e0401e9001a504a4010098182020808155027009c02008e56070c28728114480490400801cac010290ae291a00ca0408b60204c128012601c100a24cc01e100897242832a825000c1e1&#39;,
+ &#39;miner&#39;: &#39;0xea674fdde714fd979de3edf0f56aa9716b898ec8&#39;,
+ &#39;mix_hash&#39;: &#39;0xa832679fcf3e71f0b29bd5913955151be5bf1fc59e135e3c7eb6e30f8442a5df&#39;,
+ &#39;nonce&#39;: &#39;0x31e7e99df18e0424&#39;,
+ &#39;parent_hash&#39;: &#39;0x0c9ef41f038aa58a4aa2810fda03d9d82aac9082c80283230fd74cb1cceb4b00&#39;,
+ &#39;receipts_root&#39;: &#39;0xf7b9f8e92a4b420a27302ab91084e5499d3d711183a021f4956ff32de246e14e&#39;,
+ &#39;sha3_uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+ &#39;size&#39;: 58470,
+ &#39;state_root&#39;: &#39;0xfb3df73e7a41d500a374ee236dd613bb24f1a5fa5b80615a7953ea75c26c6a6d&#39;,
+ &#39;timestamp&#39;: 1642114795,
+ &#39;total_difficulty&#39;: 38896129597749836221010,
+ &#39;transactions&#39;: [&#39;0x3dac2080b4c423029fcc9c916bc430cde441badfe736fc6d1fe9325348af80fd&#39;,
+  &#39;0x82a6fdc276916a97a4723bb15ffc39b4e8efd2cd2044e7957b46a93c00e95b7c&#39;,
+  &#39;0x1dc98e66e46d8bbb0936b5d57ef9685caf2be3a561ae232fe35cc91d2f1f49d3&#39;,
+  &#39;0x28c466d01156df471dca4655c7199706afbcb4a849cc808e8640a7e7de89f7b2&#39;,
+  &#39;0x3b9c1f0a4a2e9eee54dea8c217711a3addb558d64fa2b7c70578fa2502edb0c3&#39;,
+  &#39;0x296cc22df5c8b951f297dc4e2cfd53562f67a774e80a089f479571b25670e66b&#39;,
+  &#39;0xb48403ca12261877e572c52d580dd978c275ebae9211e7a672ed857c8d5500f6&#39;,
+  &#39;0x627d63666c75192aec83ea65dc442df369decf696cf8144f68dbf7f187094039&#39;,
+  &#39;0x7781f35dc378a967e43dce46cd8607646a918be3bec904a8b7d2ef549e363417&#39;,
+  &#39;0x21ebb965dfcdaba5acd5be2b36edc33320f075dc39be2040e0927667f4457fb6&#39;,
+  &#39;0xa70fdd89ad3b69973359c2644fb2bf85d8c7e17f6e102eeb6477b19c38aa98bb&#39;,
+  &#39;0xdbd52ee92b76edd9db38da42856a51107433edd86cc77f85732f9fc34452fcdc&#39;,
+  &#39;0x5b8f2f0357dbdb278abd5d55b6f8fa138eb3c5bcb5eee853f359e3f12bda2838&#39;,
+  &#39;0x45113eb6abd490372fb22b9212adaa8dbbc882b4781fcee6cbb7643f7a338091&#39;,
+  &#39;0x9f6e14474230f412c1dd5034a2209372763539b6ee76acf7288836efc03bfd84&#39;,
+  &#39;0xda19521fd5f0ad64b33fe39c70f9a313bf432826aa1f37959a88381af34efa59&#39;,
+  &#39;0x26256210c64300cdef6bcd4663206676a918e0b7c4c2bef2058b839fe1bf5ade&#39;,
+  &#39;0xc26aac94c691040a0f126a0582c7342795af39034e79b54943c34ac99329c822&#39;,
+  &#39;0x8ab0f56e9cc352314368a20fcd73a7de622692983fd19e53087081578e889d57&#39;,
+  &#39;0x57d755615684d53415cf2d47004f46d78478fd81df886d86e0f6f2066f222b2f&#39;,
+  &#39;0x28aea3e818f854744bb6bb4a4f05cc5612026e5fb53eeffe750373bd6268c1b5&#39;,
+  &#39;0xfb81b965f0b55327d06b63e597cb80768d83227045e3065fd214982e3aae7ead&#39;,
+  &#39;0x58c03330f067e408fcb251bec67a18920bcf13b53f559fd7c99d90abb84c5751&#39;,
+  &#39;0xfe7efe42fb99036825c456c890f2da08ed58f22ef7c6b38d27d866eb69e31782&#39;,
+  &#39;0x3dfcf735a0acb9955a4457c5dfff589f16efc59926b7cfc4de74098fd17f4c79&#39;,
+  &#39;0xd49caad5d0fc7171266516ebb091da5662b36981138de47386e59677c6b73b2e&#39;,
+  &#39;0x12e72642adbfac3c0f2144e3f83a18c8a51aababea1940dfb458474aadd7d6fb&#39;,
+  &#39;0xb365be2030527975486f1a39427d846b8d33e052af1c0557eeec6aa902fee985&#39;,
+  &#39;0x7dc548e2551ae5b40170006c7a1f1c9d00006d43623f21fa77d9a9621da1960b&#39;,
+  &#39;0x814f18814e74e4e39393355ab9a21858e6894cd1bb74113f7f44f33c4441a310&#39;,
+  &#39;0xc9deea622c8901db67edd7c991d613c35b73fa2fca4fbd2bc59548cf34b42d88&#39;,
+  &#39;0xf55f98b1be7dabad23cff853ee0de0175b95ea3fdedc35ef323c126cc7df3ad9&#39;,
+  &#39;0x67b282062ff5ca96eb3d587b6ae4771bda0d170aec2e40a1ea93d23973443821&#39;,
+  &#39;0x60085d9f157a8426b3d2795de6cebbd4b50d541445be08e23f2b458d4bd0e60e&#39;,
+  &#39;0x6d7b7c7b43aeebece34dfb17c46a0bf83237693e57742d1c6166f1a74217125f&#39;,
+  &#39;0xb9768a9acddde75d8b80d4b9d661024086674341626837e31a3ac12c20ad7298&#39;,
+  &#39;0xf41ffd9f8a232dd5383328178999a3d859a8947b152ceb25650dbb4a0a9ff445&#39;,
+  &#39;0x7ad3c1541183fccb969fd4652e7a856b23026cec1e5153899c641579147df3e9&#39;,
+  &#39;0x73e5371291a6df1535f03573030bfca55c8185b65a939d6c59304778cbb59523&#39;,
+  &#39;0xc997cd28446ea82a660957535c8e6604885323d9fbd6c3189b1cc6e4bfc2ca32&#39;,
+  &#39;0x479806bdca2826848153f90caa7437e8b635639aab93f4cfabcc2bd914883780&#39;,
+  &#39;0xe4724b44a49cbf94d8f9657e619051fcf4ea4a5ea1bf98187b5a19b9623d910f&#39;,
+  &#39;0x37b618552833545cc294f42061ba5c43df47c71423ef58ea0fc71f7bc69cdfe8&#39;,
+  &#39;0x95d0cf5306b464b272445d80d5fcf264a4fba8ba908352e364aac0fb569d13b2&#39;,
+  &#39;0x71a5827a67459b7e7a1a7a84459174b8816441977b8b5be885cb2f05f2535319&#39;,
+  &#39;0x426e9c522f36c2bc8637616d7a125afd5dbac627d7e73e45f0477a282544f732&#39;,
+  &#39;0x1b8433d194a29b981d1a94a73b4e50de4de6e27cb3dd0f3a76e5919655fad73a&#39;,
+  &#39;0x937a105002120c54542d050270d81d618c70d702761630664d6a73d33085f993&#39;,
+  &#39;0xd6b6c532c065cd49a0485aa1af9bb067df5ad36704d30c799b248bd08eaf39ff&#39;,
+  &#39;0x2f002236f8f0d85cb411b7d5c958c266921ce2787ab14472afb8515cd3b1bcbd&#39;,
+  &#39;0x6851c2514310a597460ddffea524e1dd5b321124355dd83bd6b236b7c61ea1e9&#39;,
+  &#39;0x57b28d954dc03e9fbfb674fb100e96f721c27e9f1eaab9aaefb44729b2fd7ef3&#39;,
+  &#39;0xc303b7a2f54e89643b73c7ff11f165b2ba979878028f106686085da1b98302e4&#39;,
+  &#39;0xeaf6671ddf866fe0632612b80136032f50c096162198905ab6fd7544385ff64c&#39;,
+  &#39;0xd3607f690abf48d29c4d37ee117b0e9061dcf0e59919871dc2d4e0e25384ef4e&#39;,
+  &#39;0x108d74bf50d4cdfd5f778426f39facb32bd0773d53f5ce39167334824af6f376&#39;,
+  &#39;0xcac1e7878c91064571f7bd6c48c814b8c3bc39459f4e9ae7b034709b0f8c961e&#39;,
+  &#39;0x77ae0fe18ac9b3147e2e7542f4d352039c37c7ff3751a31e2bc69e27f5d72f55&#39;,
+  &#39;0xb5eb72b80b23698cf88dd445688109ee407cd98dc58f92e0617093fee529ba2a&#39;,
+  &#39;0xeb6b97eeb9e23275392757cb59140c05b67887c1d63d70b9d2e352ecc6927cb8&#39;,
+  &#39;0x077ad2efa19c7b4caeba6f175c2899b82382dff6c80cfe08571aad0189bd04a4&#39;,
+  &#39;0x56442cc66fc031cacf528aee196904d9665fe6d6da26d4de993e3ae6353d3ec5&#39;,
+  &#39;0x998340271bf5500ff7b4d732fd6d6cbc3c9d4fb9d8c367dec1a40fb9a130056e&#39;,
+  &#39;0x7a38f49483bf8270c05c0d168612b59e65b44acc6d0c465c447a90b356589b53&#39;,
+  &#39;0xeae63c92f6083e41292445909e5713e3227edc96bc7d84f85f43c739dba07de0&#39;,
+  &#39;0xc2ee70de2133d625f8033a4b4b08ea34b27dd0ab0da69dc62f010be2324bde3e&#39;,
+  &#39;0x028a22ee71202d985ab3c349aa5fd152bda1ca648a15392a9da1a9a9f8dd92dd&#39;,
+  &#39;0x6234a2669da8e91fcbe6c81458a0b89616a6d9ee81380b9e88d3d1b905a3a42f&#39;,
+  &#39;0x8a875ed36fa0116a9ce71bb289dddc24d84229a9e4b5b4329ad14c39234bc54d&#39;,
+  &#39;0xdfa69e312ba84abf6da37799b15171a5e553ec805aa23141f729da78fa00bfbe&#39;,
+  &#39;0xdb33606e300cc18a0f7d1d2ef8afc54f587117d75ae328d2cc1d21a281783b7f&#39;,
+  &#39;0x2cc9e8a5061bad4513ced54f4b14da3f49ffbb4fc662f5233a6cafe74e5e561f&#39;,
+  &#39;0x54f23a1418ee9ae058eafee2bd923087266fe0e4b92f477e9041444500cbe469&#39;,
+  &#39;0xaddf3bf9142cd7c2bface37492517e9eee2b4b29eb348f938ff7a4de16829150&#39;,
+  &#39;0xab0f76a492da23fdaf61a02de4cf4a9248c745262d16d9f3e3841a3d24f5ff9b&#39;,
+  &#39;0x031f831c69b9ada875b89de687114f6bdb58bad7db866e805b2a78326a392dc3&#39;,
+  &#39;0x4775c998bf82e2eea995deeae091df3e73f417ab27a2f5544348b7816af92127&#39;,
+  &#39;0xefddceb649e8b0d1b091fd9f7d768d13f2b085d50ae87becbc087c952879beaa&#39;,
+  &#39;0xc6c79ffb86f0f2efd16f49271224823d078a30a7892c465ba3cba20e87c0a36e&#39;,
+  &#39;0xccdeaf56bd85047cfd2d7c565341e862c55c139b81550bf35e2add633ddf3a47&#39;,
+  &#39;0xab8b149b54d17e86be6e817950be1ca7eeb92961189b5c378787eb6623f481d9&#39;,
+  &#39;0x62ddc128f28f1290b131a81fb1343fe865968d848fcb25ed6fc528a098e7e5f2&#39;,
+  &#39;0xdb3d3f5a611d7c7eba5aa9d262773d61a9b17053bec3b5b80ca32d693734ab9d&#39;,
+  &#39;0xb97a697052ae86df2bc654d0efaac8c5e8e6a8dd2b5e3f85b3405ea5aa8f3885&#39;,
+  &#39;0x8c776afd6a7788e60ba0f6a4cc481bd3aa83103c8c17181cf1258d22256d6c38&#39;,
+  &#39;0x8cf7be01b6b673636db8fcda3dfff311560c84d3415a7c0c1696f126955f02e9&#39;,
+  &#39;0x6b1672db798a679c676731595c2ed0a097e6f1289c0cbdd04b8a6294901017d5&#39;,
+  &#39;0x980458bce7ac5cd9298085fb9ad28d78ae05a32ef5957f34589bda023d28489a&#39;,
+  &#39;0x316614b6ff95f4dff67126c3823515b724b0dbb7b64b33d0c38fc3713e734c58&#39;,
+  &#39;0xf658c0e7cd445d33c51ab898a392e9be0b8993c9b488f2230e10053f2e06e464&#39;,
+  &#39;0xca36ca009002bfed0aab34e2f1956715ea87a6a2b9789510d7dedcb70d6caf93&#39;,
+  &#39;0x1f34dfdf44ba37e291a789a2f2ef2f50fd1c164f877bda42589011d78939fb03&#39;,
+  &#39;0xef3fbc478323963fddc3897fc87c2d5fde44723788bfdea8aee81d0112e4e9bf&#39;,
+  &#39;0x8fdda8443257b354f735edf389a2c21ec8b99622d4b1b7bfdc1dbd1da8794f0e&#39;,
+  &#39;0xe0c368234454e27f66d26b2d6fb56c3e69a5de50e0ac13ba8b551650a0a4889d&#39;,
+  &#39;0xb4fbcd7d03598433a5f62bf6c5b2b3439679ebc20ef70456f781c3b93de7f412&#39;,
+  &#39;0xef2a8b39cb701fb31de04f9012be4cf2afc926199712aa2ee84a9565900d9645&#39;,
+  &#39;0x3ee5d86e13de20224e294bde4e3ca05988b993c6c072da5dbfdbc91fea83a43c&#39;,
+  &#39;0x0d0022a1153b603ab7c366e53ed98519f42cdced8c4f6fa82ff91d5df3669e1e&#39;,
+  &#39;0x0c6bf6056445de030b248368fdab25b023775d8b83c29a42ccd9103d4f37400e&#39;,
+  &#39;0x9ea837318f53828f5cf1c41a9d37fafc84d9045823bf5c5f6a44d9cc36f2a796&#39;,
+  &#39;0x673c56108c17f9c3b72424212879e7a1e8af5250d7b5f902dcd640f9a0c9ab1a&#39;,
+  &#39;0xe2d6ec4a37beedad1b22c23086edbce75285eeb54fd84b6b38573d9e22553827&#39;,
+  &#39;0xb58330d5f922894800112c781831802d32b413eff2ee3b7656f3747ab3f8178a&#39;,
+  &#39;0x45552aea90d9a8ce86291a9b786d2b6106e625ccac44bb1984b9346ae84e50dc&#39;,
+  &#39;0x4db4831ae73afe2dba5079b4fbe50566f77bea28947078f46ef85d05b6beab41&#39;,
+  &#39;0xae264a00b982b439e21fea8a99845d3c3d1143b05d15b990ce5453579cd7ebc9&#39;,
+  &#39;0x5a80c76aa726b3bd0da69d1f3eaf4ab5d98ee9f95f337cc07799d2e5fd8f201a&#39;,
+  &#39;0x97abc3053b0e74381d52bfd3b278a135afdae0b7e1ee21a30dfbbc08dc20b422&#39;,
+  &#39;0x989240bc99820609573e19fbfa3b69780b06c6255163cb9059ac60dd0bec766c&#39;,
+  &#39;0x2f89ebd51377291f39b315a5feac7cbef0c8377f512bba32b128d59b086f6abe&#39;,
+  &#39;0x146063226f2bc60ab02fff825393555672ff505afb352ff11b820355422ba31e&#39;],
+ &#39;transactions_root&#39;: &#39;0x16b6ff83df3ef14f614c70ac29e8a05d102c6bed0e5882c284abf0120b89529c&#39;,
+ &#39;uncles&#39;: []}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-blocks">
+<h1>Get blocks<a class="headerlink" href="#Get-blocks" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blocks</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_blocks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">14000000</span><span class="p">,</span> <span class="mi">14000100</span><span class="p">))</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">blocks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+100
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="latest-is-a-valid-block-number-reference">
+<h1><code class="docutils literal notranslate"><span class="pre">latest</span></code> is a valid block number reference<a class="headerlink" href="#latest-is-a-valid-block-number-reference" title="Permalink to this headline"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">block</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_block</span><span class="p">(</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Get-block-number-of-timestamp">
+<h1>Get block number of timestamp<a class="headerlink" href="#Get-block-number-of-timestamp" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">block_number</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_block_of_timestamp</span><span class="p">(</span><span class="mi">1650946000</span><span class="p">)</span>
+
+<span class="n">block_number</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+14657968
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-block-numbers-of-timestamps">
+<h1>Get block numbers of timestamps<a class="headerlink" href="#Get-block-numbers-of-timestamps" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">timestamps</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1650746000</span><span class="p">,</span> <span class="mi">1650946000</span><span class="p">,</span> <span class="mi">86400</span><span class="p">)</span>
+
+<span class="n">block_numbers</span> <span class="o">=</span> <span class="k">await</span> <span class="n">evm</span><span class="o">.</span><span class="n">async_get_blocks_of_timestamps</span><span class="p">(</span><span class="n">timestamps</span><span class="p">)</span>
+
+<span class="n">block_numbers</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[14643250, 14649567, 14655946]
+</pre></div></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

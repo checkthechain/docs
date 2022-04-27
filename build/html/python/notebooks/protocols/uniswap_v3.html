@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get pool metadata &mdash; Check the Chain (ctc)  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Check the Chain (ctc)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data &amp; Ops</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/obtaining_data.html">Obtaining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/storing_data.html">Storing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/monitoring.html">Monitoring</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Command Line Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/subcommands.html">Subcommands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/useful_aliases.html">Useful Aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/similar_tools.html">Similar CLI tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_tour.html">Codebase Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc_client.html">RPC Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../async_code.html">Asynchronous Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes.html">Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specific_protocols.html">Specific Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../similar_tools.html">Similar Python Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/under_construction.html">[Under Construction]</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Check the Chain (ctc)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Get pool metadata</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/notebooks/protocols/uniswap_v3.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctc.protocols</span> <span class="kn">import</span> <span class="n">uniswap_v3_utils</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pool</span> <span class="o">=</span> <span class="s1">&#39;0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Get-pool-metadata">
+<h1>Get pool metadata<a class="headerlink" href="#Get-pool-metadata" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pool_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uniswap_v3_utils</span><span class="o">.</span><span class="n">async_get_pool_metadata</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+
+<span class="n">pool_metadata</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;x_symbol&#39;: &#39;RAI&#39;,
+ &#39;y_symbol&#39;: &#39;DAI&#39;,
+ &#39;x_address&#39;: &#39;0x03ab458634910aad20ef5f1c8ee96f1d6ac54919&#39;,
+ &#39;y_address&#39;: &#39;0x6b175474e89094c44da98b954eedeac495271d0f&#39;,
+ &#39;fee&#39;: 500}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-pool-swaps">
+<h1>Get pool swaps<a class="headerlink" href="#Get-pool-swaps" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">swaps</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uniswap_v3_utils</span><span class="o">.</span><span class="n">async_get_pool_swaps</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+
+<span class="n">swaps</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+loading events (5.42MB across 1 files)
+getting events from node, block range: [14663581, 14663582]
+saving events to file: /home/storm/ctc_data/mainnet/events/contract__0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d/event__0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67/14663581__to__14663582.csv
+loading events (5.42MB across 2 files)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>block_hash</th>
+      <th>transaction_hash</th>
+      <th>contract_address</th>
+      <th>event_name</th>
+      <th>arg__sender</th>
+      <th>arg__recipient</th>
+      <th>x_amount</th>
+      <th>y_amount</th>
+      <th>arg__sqrtPriceX96</th>
+      <th>arg__liquidity</th>
+      <th>arg__tick</th>
+      <th>address</th>
+      <th>event_hash</th>
+    </tr>
+    <tr>
+      <th>block_number</th>
+      <th>transaction_index</th>
+      <th>log_index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12376204</th>
+      <th>174</th>
+      <th>283</th>
+      <td>0x732c37dec26a9b18dd5eae14c284135a6c94dfeac8e1...</td>
+      <td>0x4273d4c137dafc078d57d6bef59be638caf0befb6e3f...</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>Swap</td>
+      <td>0xe592427a0aece92de3edee1f18e0157c05861564</td>
+      <td>0x530cf036ed4fa58f7301a9c788c9806624cefd19</td>
+      <td>-2566.392073</td>
+      <td>7729.371943</td>
+      <td>137701145051790343205145302274</td>
+      <td>1279015072674050594682566</td>
+      <td>11055</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>0xc42079f94a6350d7e6235f29174924f928cc2ac818eb...</td>
+    </tr>
+    <tr>
+      <th>12376300</th>
+      <th>284</th>
+      <th>324</th>
+      <td>0xdec52387bfbeaca08c902e977d45adf010244206de23...</td>
+      <td>0x7f8c5d7d3b80e5bcc44bc69724df30c2a02e08dfc797...</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>Swap</td>
+      <td>0xe592427a0aece92de3edee1f18e0157c05861564</td>
+      <td>0xfa70fe951720d912eba9afa8cbf1b58f6c73d163</td>
+      <td>1000.000000</td>
+      <td>-3015.152438</td>
+      <td>137514372438639148649092841650</td>
+      <td>1279015072674050594682566</td>
+      <td>11028</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>0xc42079f94a6350d7e6235f29174924f928cc2ac818eb...</td>
+    </tr>
+    <tr>
+      <th>12376313</th>
+      <th>98</th>
+      <th>145</th>
+      <td>0xd4476cdad58210e7b679d84c2ceb4ccb840130f29f3d...</td>
+      <td>0x04dcec4d9568c9c546c8eca841bd1a3ae5cd90980c74...</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>Swap</td>
+      <td>0xe592427a0aece92de3edee1f18e0157c05861564</td>
+      <td>0xfa70fe951720d912eba9afa8cbf1b58f6c73d163</td>
+      <td>800.000000</td>
+      <td>-2406.239254</td>
+      <td>137365318749770594892820423408</td>
+      <td>1279015072674050594682566</td>
+      <td>11006</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>0xc42079f94a6350d7e6235f29174924f928cc2ac818eb...</td>
+    </tr>
+    <tr>
+      <th>12376354</th>
+      <th>306</th>
+      <th>270</th>
+      <td>0xa39d3cd53d20824f408257273ac11a8e995b0089ac1e...</td>
+      <td>0xd23e9b136c18fb7fb40402eb7891b2eac9edfdbb0d18...</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>Swap</td>
+      <td>0xe592427a0aece92de3edee1f18e0157c05861564</td>
+      <td>0x22f9dcf4647084d6c31b2765f6910cd85c178c18</td>
+      <td>-3664.080852</td>
+      <td>11028.455800</td>
+      <td>137472087145646725670697909903</td>
+      <td>8179643415011922565226242</td>
+      <td>11022</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>0xc42079f94a6350d7e6235f29174924f928cc2ac818eb...</td>
+    </tr>
+    <tr>
+      <th>12377046</th>
+      <th>148</th>
+      <th>226</th>
+      <td>0x8ace8c5b4669b873546e85e04d649489e16e9901f4e6...</td>
+      <td>0x31d3aaea23e8994c40df6319426dc9dfb152ea9b546a...</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>Swap</td>
+      <td>0xe592427a0aece92de3edee1f18e0157c05861564</td>
+      <td>0xc5a215cdbb69231b2e0f70613afdddbfc1e12c2d</td>
+      <td>-3454.270677</td>
+      <td>10412.397172</td>
+      <td>137569386092052975813204860490</td>
+      <td>8474322160704207337819030</td>
+      <td>11036</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>0xc42079f94a6350d7e6235f29174924f928cc2ac818eb...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14662161</th>
+      <th>37</th>
+      <th>6</th>
+      <td>0x915d5561dde9df50ab13f1fb5c0ca6a83b12c27c0063...</td>
+      <td>0x0937ec0709d17f92c68c9c66af9e32b4a0d2bd834594...</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>Swap</td>
+      <td>0x6b2b206bfaa975ea547e58b3f2e41015da6c5787</td>
+      <td>0xa478c2975ab1ea89e8196811f51a7b7ade33eb11</td>
+      <td>1834.185491</td>
+      <td>-5539.369860</td>
+      <td>137719868525475833597428143674</td>
+      <td>4942152016561510425328666406</td>
+      <td>11058</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>0xc42079f94a6350d7e6235f29174924f928cc2ac818eb...</td>
+    </tr>
+    <tr>
+      <th>14662268</th>
+      <th>141</th>
+      <th>178</th>
+      <td>0x071dd3febb621ed77b3e1c97609fc7d6e1e147385d95...</td>
+      <td>0xa2adeda3372116c25b5ea6aa46708b99299f4bd1a767...</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>Swap</td>
+      <td>0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45</td>
+      <td>0xfe32a37f15ee4a4b59715530e5817d1322b9df80</td>
+      <td>-2524.819680</td>
+      <td>7632.766652</td>
+      <td>137719990825985742355800701764</td>
+      <td>4942152016561510425328666406</td>
+      <td>11058</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>0xc42079f94a6350d7e6235f29174924f928cc2ac818eb...</td>
+    </tr>
+    <tr>
+      <th>14662278</th>
+      <th>226</th>
+      <th>378</th>
+      <td>0x098fa936238c23c829cc69264686a9fd15fa38d68d22...</td>
+      <td>0x6b454dff3b2abc3f689e0d1751b41faa6399db02d45e...</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>Swap</td>
+      <td>0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45</td>
+      <td>0xfe32a37f15ee4a4b59715530e5817d1322b9df80</td>
+      <td>-2244.543143</td>
+      <td>6785.475779</td>
+      <td>137720099550277413652067366710</td>
+      <td>4942152016561510425328666406</td>
+      <td>11058</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>0xc42079f94a6350d7e6235f29174924f928cc2ac818eb...</td>
+    </tr>
+    <tr>
+      <th>14663016</th>
+      <th>3</th>
+      <th>16</th>
+      <td>0x2974fcf6f1a8a2c182f5e1905bb297317f67adac377c...</td>
+      <td>0xc920f24cd3526ad7fad36394e9c59d9f339cc9e31dca...</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>Swap</td>
+      <td>0xb23dc3f00856288cd7b6bde5d06159f01b75aa4c</td>
+      <td>0x60594a405d53811d3bc4766596efd80fd545a270</td>
+      <td>4979.066162</td>
+      <td>-15037.146261</td>
+      <td>137719858488192778842747399573</td>
+      <td>4942152016561510425328666406</td>
+      <td>11058</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>0xc42079f94a6350d7e6235f29174924f928cc2ac818eb...</td>
+    </tr>
+    <tr>
+      <th>14663352</th>
+      <th>119</th>
+      <th>221</th>
+      <td>0x3b2583b00c4678ccc158309c9b7824ce21eeef66ee1f...</td>
+      <td>0xd7ca8739ec122f708a631be3957741dcdc7f4fdc1004...</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>Swap</td>
+      <td>0xe592427a0aece92de3edee1f18e0157c05861564</td>
+      <td>0x20730820ab819e69e8e632574382f6d4d9fee50f</td>
+      <td>-12956.420051</td>
+      <td>39168.610767</td>
+      <td>137720486090383156066960991850</td>
+      <td>4942152016561510425328666406</td>
+      <td>11058</td>
+      <td>0xcb0c5d9d92f4f2f80cce7aa271a1e148c226e19d</td>
+      <td>0xc42079f94a6350d7e6235f29174924f928cc2ac818eb...</td>
+    </tr>
+  </tbody>
+</table>
+<p>11217 rows × 13 columns</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="Quote-trades">
+<h1>Quote trades<a class="headerlink" href="#Quote-trades" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">uniswap_v3_utils</span><span class="o">.</span><span class="n">async_quote_exact_input_single</span><span class="p">(</span>
+    <span class="n">amount_in</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">500e18</span><span class="p">),</span>
+    <span class="n">token_in</span><span class="o">=</span><span class="n">pool_metadata</span><span class="p">[</span><span class="s1">&#39;x_address&#39;</span><span class="p">],</span>
+    <span class="n">token_out</span><span class="o">=</span><span class="n">pool_metadata</span><span class="p">[</span><span class="s1">&#39;y_address&#39;</span><span class="p">],</span>
+    <span class="n">fee</span><span class="o">=</span><span class="n">pool_metadata</span><span class="p">[</span><span class="s1">&#39;fee&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1510047653339905063649
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">uniswap_v3_utils</span><span class="o">.</span><span class="n">async_quote_exact_output_single</span><span class="p">(</span>
+    <span class="n">amount_out</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">500e18</span><span class="p">),</span>
+    <span class="n">token_in</span><span class="o">=</span><span class="n">pool_metadata</span><span class="p">[</span><span class="s1">&#39;x_address&#39;</span><span class="p">],</span>
+    <span class="n">token_out</span><span class="o">=</span><span class="n">pool_metadata</span><span class="p">[</span><span class="s1">&#39;y_address&#39;</span><span class="p">],</span>
+    <span class="n">fee</span><span class="o">=</span><span class="n">pool_metadata</span><span class="p">[</span><span class="s1">&#39;fee&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+165557669689334276511
+</pre></div></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get owner of ENS name &mdash; Check the Chain (ctc)  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Check the Chain (ctc)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data &amp; Ops</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/obtaining_data.html">Obtaining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/storing_data.html">Storing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ops/monitoring.html">Monitoring</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Command Line Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/subcommands.html">Subcommands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/useful_aliases.html">Useful Aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli/similar_tools.html">Similar CLI tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_tour.html">Codebase Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc_client.html">RPC Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../async_code.html">Asynchronous Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes.html">Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specific_protocols.html">Specific Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../similar_tools.html">Similar Python Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Case Studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/under_construction.html">[Under Construction]</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Check the Chain (ctc)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Get owner of ENS name</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/notebooks/protocols/ens.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctc.protocols</span> <span class="kn">import</span> <span class="n">ens_utils</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">address</span> <span class="o">=</span> <span class="s1">&#39;0xd8da6bf26964af9d7eed9e03e53415d37aa96045&#39;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;vitalik.eth&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Get-owner-of-ENS-name">
+<h1>Get owner of ENS name<a class="headerlink" href="#Get-owner-of-ENS-name" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">ens_utils</span><span class="o">.</span><span class="n">async_get_owner</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;0xd8da6bf26964af9d7eed9e03e53415d37aa96045&#39;
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Reverse-lookup-of-ENS-address">
+<h1>Reverse lookup of ENS address<a class="headerlink" href="#Reverse-lookup-of-ENS-address" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">ens_utils</span><span class="o">.</span><span class="n">async_reverse_lookup</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;vitalik.eth&#39;
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-whether-name-record-exists">
+<h1>Get whether name record exists<a class="headerlink" href="#Get-whether-name-record-exists" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">ens_utils</span><span class="o">.</span><span class="n">async_record_exists</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-hash-of-ENS-name">
+<h1>Get hash of ENS name<a class="headerlink" href="#Get-hash-of-ENS-name" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ens_utils</span><span class="o">.</span><span class="n">hash_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;0xee6c4522aab0003e8d14cd40a6af439055fd2577951148c14b6cea9a53475835&#39;
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-text-records-of-ENS-name">
+<h1>Get text records of ENS name<a class="headerlink" href="#Get-text-records-of-ENS-name" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">ens_utils</span><span class="o">.</span><span class="n">async_get_text_records</span><span class="p">(</span><span class="s1">&#39;foda.eth&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;email&#39;: &#39;foda@just.is&#39;,
+ &#39;url&#39;: &#39;https://asf.is&#39;,
+ &#39;com.twitter&#39;: &#39;0xFoda&#39;,
+ &#39;avatar&#39;: &#39;https://slate.textile.io/ipfs/bafybeigrld6uniropykguappfuuuoaqrwieri4noiveme53pz2ayik4jha&#39;,
+ &#39;description&#39;: &#39;ⓕ™&#39;,
+ &#39;com.github&#39;: &#39;a-s-f&#39;,
+ &#39;com.instagram&#39;: &#39;https://instagram.com/foda.farm&#39;,
+ &#39;color&#39;: &#39;#f0da91&#39;,
+ &#39;eth.ens.delegate&#39;: &#39;https://discuss.ens.domains/t/ens-dao-delegate-applications/815/765?u=foda&#39;,
+ &#39;snapshot&#39;: &#39;ipns://storage.snapshot.page/registry/0xF75Ed978170dFa5ee3d71d95979a34C91CD7042e/foda.eth&#39;}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-ENS-name-expiration">
+<h1>Get ENS name expiration<a class="headerlink" href="#Get-ENS-name-expiration" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">timestamp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ens_utils</span><span class="o">.</span><span class="n">async_get_expiration</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="n">timestamp</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1967233824
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-all-registrations">
+<h1>Get all registrations<a class="headerlink" href="#Get-all-registrations" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">registrations</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ens_utils</span><span class="o">.</span><span class="n">async_get_registrations</span><span class="p">()</span>
+
+<span class="n">registrations</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>address</th>
+      <th>transaction_hash</th>
+      <th>block_hash</th>
+      <th>contract_address</th>
+      <th>event_name</th>
+      <th>event_hash</th>
+      <th>arg__label</th>
+      <th>arg__owner</th>
+      <th>arg__parent_node</th>
+    </tr>
+    <tr>
+      <th>block_number</th>
+      <th>transaction_index</th>
+      <th>log_index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9380415</th>
+      <th>22</th>
+      <th>33</th>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>0x36a8544bc597d7d74ca66c118345e500cfc1dca0dbac...</td>
+      <td>0xa1cae6357f471b005baa1065cd5631cfae9e0587c4aa...</td>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>NewOwner</td>
+      <td>0xce0457fe73731f824cc272376169235128c118b49d34...</td>
+      <td>0x4f5b812789fc606be1b3b16908db13fc7a9adf7ca726...</td>
+      <td>0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85</td>
+      <td>0x00000000000000000000000000000000000000000000...</td>
+    </tr>
+    <tr>
+      <th>9380428</th>
+      <th>34</th>
+      <th>21</th>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>0x1842da220ed4eaf0ed21d5366ee800251feffbd1d281...</td>
+      <td>0x1191aa09f8d699c4cdc64efc64e9601034c9ace73217...</td>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>NewOwner</td>
+      <td>0xce0457fe73731f824cc272376169235128c118b49d34...</td>
+      <td>0x7926fb9208a20417f0b848065c6fe289da455821d6fc...</td>
+      <td>0x0904dac3347ea47d208f3fd67402d039a3b99859</td>
+      <td>0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f...</td>
+    </tr>
+    <tr>
+      <th>9380515</th>
+      <th>7</th>
+      <th>7</th>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>0x6f410b83a468197dd0de7eb31e3f18fcfe6bf961080f...</td>
+      <td>0x11493f7456a83455b3fbf09ba6c4eb5d01455c2d8741...</td>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>NewOwner</td>
+      <td>0xce0457fe73731f824cc272376169235128c118b49d34...</td>
+      <td>0xdec08c9dbbdd0890e300eb5062089b2d4b1c40e3673b...</td>
+      <td>0x4fe4e666be5752f1fdd210f4ab5de2cc26e3e0e8</td>
+      <td>0x00000000000000000000000000000000000000000000...</td>
+    </tr>
+    <tr>
+      <th>9380516</th>
+      <th>58</th>
+      <th>44</th>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>0x7311cdefc63aaf6226110ec9d682714f878ebdc115d0...</td>
+      <td>0xb7106125148bd4b2e04af5c3fea3cec8cabf52f83e2d...</td>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>NewOwner</td>
+      <td>0xce0457fe73731f824cc272376169235128c118b49d34...</td>
+      <td>0xe5e14487b78f85faa6e1808e89246cf57dd34831548f...</td>
+      <td>0x084b1c3c81545d370f3634392de611caabff8148</td>
+      <td>0xa097f6721ce401e757d1223a763fef49b8b5f90bb185...</td>
+    </tr>
+    <tr>
+      <th>9380533</th>
+      <th>12</th>
+      <th>8</th>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>0xf296f9b8d5143c6fca65b010cb9d621d0574dca1950b...</td>
+      <td>0x425b28e5b1d989e3f6f7392d6556d00aa08aed6a8c1f...</td>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>NewOwner</td>
+      <td>0xce0457fe73731f824cc272376169235128c118b49d34...</td>
+      <td>0x9dd2c369a187b4e6b9c402f030e50743e619301ea62a...</td>
+      <td>0xa2f428617a523837d4adc81c67a296d42fd95e86</td>
+      <td>0x00000000000000000000000000000000000000000000...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14661555</th>
+      <th>82</th>
+      <th>173</th>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>0x984c0d69807560bc16b04534acce1d470eb25f753887...</td>
+      <td>0xce9297e8c8f48e7d545b46f324e15a8209dd8bc74170...</td>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>NewOwner</td>
+      <td>0xce0457fe73731f824cc272376169235128c118b49d34...</td>
+      <td>0x46535caba61b96b9bbaced247f0433b8117f4099d037...</td>
+      <td>0x23ac96ea054c5bd337712205d0997c286e057caa</td>
+      <td>0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f...</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">14661556</th>
+      <th rowspan="2" valign="top">51</th>
+      <th>65</th>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>0xae8997784e2b56a47512590bcb9c733b31146a441b0e...</td>
+      <td>0x3135cff1aaa6635ab724c9cce431d7bb58fbac43ed7f...</td>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>NewOwner</td>
+      <td>0xce0457fe73731f824cc272376169235128c118b49d34...</td>
+      <td>0x9ed4897baffc1b336f53013a8679a526eccd7208258c...</td>
+      <td>0x283af0b28c62c092c9727f1ee09c02ca627eb7f5</td>
+      <td>0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f...</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>0xae8997784e2b56a47512590bcb9c733b31146a441b0e...</td>
+      <td>0x3135cff1aaa6635ab724c9cce431d7bb58fbac43ed7f...</td>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>NewOwner</td>
+      <td>0xce0457fe73731f824cc272376169235128c118b49d34...</td>
+      <td>0x9ed4897baffc1b336f53013a8679a526eccd7208258c...</td>
+      <td>0x732739de18df630b354ec365a927a4f4f2bf28e5</td>
+      <td>0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f...</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">14661557</th>
+      <th rowspan="2" valign="top">71</th>
+      <th>63</th>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>0x9ab9bcb51c1f62bea53b4e37e08b58d5b71c172f618b...</td>
+      <td>0x4e4b4559cac128943b281a15199b07d6467379ce76e6...</td>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>NewOwner</td>
+      <td>0xce0457fe73731f824cc272376169235128c118b49d34...</td>
+      <td>0xed4415e3a94126bc1a255c0fc522249b38676045632d...</td>
+      <td>0x283af0b28c62c092c9727f1ee09c02ca627eb7f5</td>
+      <td>0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f...</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>0x9ab9bcb51c1f62bea53b4e37e08b58d5b71c172f618b...</td>
+      <td>0x4e4b4559cac128943b281a15199b07d6467379ce76e6...</td>
+      <td>0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e</td>
+      <td>NewOwner</td>
+      <td>0xce0457fe73731f824cc272376169235128c118b49d34...</td>
+      <td>0xed4415e3a94126bc1a255c0fc522249b38676045632d...</td>
+      <td>0x1dc09501ae209f8cc15b3b7090084c72855d95bd</td>
+      <td>0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f...</td>
+    </tr>
+  </tbody>
+</table>
+<p>2242394 rows × 9 columns</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="Get-block-number-of-when-ENS-name-was-registered">
+<h1>Get block number of when ENS name was registered<a class="headerlink" href="#Get-block-number-of-when-ENS-name-was-registered" title="Permalink to this headline"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">ens_utils</span><span class="o">.</span><span class="n">async_get_registration_block</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+9430706
+</pre></div></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
