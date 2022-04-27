@@ -31,7 +31,7 @@ Guide
 - To install ``ctc``, see `Installation </overview/installation.html>`_.
 - To use ``ctc`` from the command line, see `Command Line Interface </cli/basic_usage.html>`_.
 - To use ``ctc`` in python, see `Python Interface </python/code_tour.html>`_.
-- To use ``ctc`` with specific protocols like Uniswap or Chainlink, see the `Specific Protocols (cli) </cli/specific_protocols.html>`_ or `Specific Protocols (python) </python/specific_protocols.html>`_.
+- To use ``ctc`` with specific protocols like Uniswap or Chainlink, see the `Specific Protocols (cli) </cli/subcommands/protocol.html>`_ or `Specific Protocols (python) </python/specific_protocols.html>`_.
 - To see examples of what you can do with ``ctc``, see `Case Studies </case_studies/gallery.html>`_.
 
 
@@ -91,11 +91,11 @@ Specific Protocols
      - Source
    * - Aave
      - CLI Docs
-     - `Python Docs </python/protocols/uniswap_v3.html>`__
+     - `Python Docs </python/protocols/aave.html>`__
      - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/aave_utils/>`__
    * - Balancer
      - CLI Docs
-     - `Python Docs </python/protocols/uniswap_v3.html>`__
+     - `Python Docs </python/protocols/balancer.html>`__
      - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/balancer_utils/>`__
    * - Chainlink
      - CLI Docs
@@ -103,27 +103,27 @@ Specific Protocols
      - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/chainlink_utils>`__
    * - Compound
      - CLI Docs
-     - `Python Docs </python/protocols/uniswap_v3.html>`__
+     - `Python Docs </python/protocols/compound.html>`__
      - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/compound_utils/>`__
    * - Curve
      - CLI Docs
-     - `Python Docs </python/protocols/uniswap_v3.html>`__
+     - `Python Docs </python/protocols/curve.html>`__
      - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/curve_utils/>`__
    * - ENS
      - CLI Docs
-     - `Python Docs </python/protocols/uniswap_v3.html>`__
+     - `Python Docs </python/protocols/ens.html>`__
      - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/ens_utils/>`__
    * - Fei
      - CLI Docs
-     - `Python Docs </python/protocols/uniswap_v3.html>`__
+     - `Python Docs </python/protocols/fei.html>`__
      - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/fei_utils/>`__
    * - Rari
      - CLI Docs
-     - `Python Docs </python/protocols/uniswap_v3.html>`__
+     - `Python Docs </python/protocols/rari.html>`__
      - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/rari_utils/>`__
    * - Uniswap V2
      - CLI Docs
-     - `Python Docs </python/protocols/uniswap_v3.html>`__
+     - `Python Docs </python/protocols/uniswap_v2.html>`__
      - `Source <https://github.com/fei-protocol/checkthechain/tree/main/src/ctc/protocols/uniswap_v2_utils/>`__
    * - Uniswap V3
      - CLI Docs
@@ -198,7 +198,6 @@ External Data Sources
    ./python/async_code
    ./python/datatypes
    ./python/specific_protocols
-   ./python/reference
    ./python/similar_tools
 
 .. toctree::
